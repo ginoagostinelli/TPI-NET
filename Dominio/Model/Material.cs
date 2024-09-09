@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Dominio.Model
 {
-    internal class Material
+    public class Material
     {
+        public string Cantidad { get; set; }
     }
 }

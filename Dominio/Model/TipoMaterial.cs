@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dominio.Model
 {
-    internal class TipoMaterial
+    public class TipoMaterial
     {
         public int Id { get; set; }
         public string Descripcion { get; set; }

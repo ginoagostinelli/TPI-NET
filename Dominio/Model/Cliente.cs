@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominio.Clases
+namespace Dominio.Model
 {
-    internal class Cliente
+    public class Cliente
     {
     }
 }

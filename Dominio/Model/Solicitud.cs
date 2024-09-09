@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominio.Clases
+namespace Dominio.Model
 {
-    internal class Solicitud
+    public class Solicitud
     {
         public int Id { get; set; }
+
+        public string Estado { get; set; }
         public string Motivo {  get; set; }
 
-        
+        public string Conclucion { get; set; }
     }
 }
