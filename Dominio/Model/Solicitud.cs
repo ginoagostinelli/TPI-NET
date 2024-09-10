@@ -12,7 +12,7 @@ namespace Dominio.Model
 
         public string Estado { get; set; }
         public string Motivo {  get; set; }
-
-        public string Conclucion { get; set; }
+        public DateOnly Fecha { get; set; }
+        public string Conclusion { get; set; }
     }
 }

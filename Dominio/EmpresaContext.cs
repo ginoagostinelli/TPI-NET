@@ -1,7 +1,5 @@
 ﻿using Dominio.Model;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Data.Entity;
 
 namespace Dominio
 {

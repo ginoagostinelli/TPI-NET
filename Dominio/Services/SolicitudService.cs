@@ -1,4 +1,4 @@
-﻿using Dominio.Clases;
+﻿using Dominio.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +25,39 @@ namespace Dominio.Services
 
             if (solicitudToDelete != null)
             {
-                context.Solicitudes.Remove(solitudToDelete);
+                context.Solicitudes.Remove(solicitudToDelete);
+                context.SaveChanges();
+            }
+        }
+
+        public Solicitud? Get(int id)
+        {
+            using var context = new EmpresaContext();
+
+            return context.Solicitudes.Find(id);
+        }
+
+        public IEnumerable<Solicitud> GetAll()
+        {
+            using var context = new EmpresaContext();
+
+            return context.Solicitudes.ToList();
+        }
+
+        public void Update(Solicitud solicitud)
+        {
+            using var context = new EmpresaContext();
+
+            Solicitud? solicitudToUpdate = context.Solicitudes.Find(solicitud.Id);
+
+            if (solicitudToUpdate != null)
+            {
+                solicitudToUpdate.Id = solicitud.Id;
+
+                solicitudToUpdate.Estado = solicitud.Estado;
+                solicitudToUpdate.Motivo = solicitud.Motivo;
+                solicitudToUpdate.Fecha = solicitud.Fecha;
+                solicitudToUpdate.Conclusion = solicitud.Conclusion;
                 context.SaveChanges();
             }
         }
