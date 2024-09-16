@@ -8,6 +8,9 @@ namespace Dominio.Model
 {
     public class Material
     {
+        public int Id { get; set; }
+        public TipoMaterial Tipo {  get; set; }
+        public Visita Visita{ get; set; }
         public string Cantidad { get; set; }
     }
 }

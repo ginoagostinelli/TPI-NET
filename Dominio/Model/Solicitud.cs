@@ -14,5 +14,7 @@ namespace Dominio.Model
         public string Motivo {  get; set; }
         public DateOnly Fecha { get; set; }
         public string Conclusion { get; set; }
+        public TipoSolicitud Tipo {  get; set; }
+        public Cliente Cliente {  get; set; }
     }
 }

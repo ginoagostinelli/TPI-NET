@@ -52,12 +52,13 @@ namespace Dominio.Services
 
             if (solicitudToUpdate != null)
             {
-                solicitudToUpdate.Id = solicitud.Id;
-
                 solicitudToUpdate.Estado = solicitud.Estado;
                 solicitudToUpdate.Motivo = solicitud.Motivo;
                 solicitudToUpdate.Fecha = solicitud.Fecha;
                 solicitudToUpdate.Conclusion = solicitud.Conclusion;
+                solicitudToUpdate.Tipo = solicitud.Tipo;
+                solicitudToUpdate.Cliente = solicitud.Cliente;
+
                 context.SaveChanges();
             }
         }
