@@ -1,5 +1,6 @@
 using Domain.Services;
 using Dominio.Model;
+using Dominio.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,6 +69,96 @@ app.MapDelete("/clientes/{id}", (int id) =>
     clienteService.Delete(id);
 })
 .WithName("DeleteCliente")
+.WithOpenApi();
+
+app.MapGet("/tecnicos/{id}", (int id) =>
+{
+    TecnicoService tecnicoService = new TecnicoService();
+
+    return tecnicoService.Get(id);
+})
+.WithName("GetTecnico")
+.WithOpenApi();
+
+app.MapGet("/tecnicos", () =>
+{
+    TecnicoService tecnicoService = new TecnicoService();
+
+    return tecnicoService.GetAll();
+})
+.WithName("GetAllTecnicos")
+.WithOpenApi();
+
+app.MapPost("/tecnicos", (Tecnico tecnico) =>
+{
+    TecnicoService tecnicoService = new TecnicoService();
+
+    tecnicoService.Add(tecnico);
+})
+.WithName("AddTecnico")
+.WithOpenApi();
+
+app.MapPut("/tecnicos", (Tecnico tecnico) =>
+{
+    TecnicoService tecnicoService = new TecnicoService();
+
+    tecnicoService.Update(tecnico);
+})
+.WithName("UpdateTecnico")
+.WithOpenApi();
+
+app.MapDelete("/tecnicos/{id}", (int id) =>
+{
+   TecnicoService tecnicoService = new TecnicoService();
+
+    tecnicoService.Delete(id);
+})
+.WithName("DeleteTecnico")
+.WithOpenApi();
+
+app.MapGet("/tiposmateriales/{id}", (int id) =>
+{
+    TipoMaterialService tipoMaterialService = new TipoMaterialService();
+
+    return tipoMaterialService.Get(id);
+})
+.WithName("GetTiposMateriales")
+.WithOpenApi();
+
+app.MapGet("/tiposmateriales", () =>
+{
+    TipoMaterialService tipoMaterialService = new TipoMaterialService();
+
+    return tipoMaterialService.GetAll();
+})
+.WithName("GetAllTiposMateriales")
+.WithOpenApi();
+
+app.MapPost("/tiposmateriales", (TipoMaterial tipoMaterial) =>
+{
+    TipoMaterialService tipoMaterialService = new TipoMaterialService();
+
+    tipoMaterialService.Add(tipoMaterial);
+})
+.WithName("AddTiposMateriales")
+.WithOpenApi();
+
+app.MapPut("/tiposmateriales", (TipoMaterial tipoMaterial) =>
+{
+    TipoMaterialService tipoMaterialService = new TipoMaterialService();
+
+    tipoMaterialService.Update(tipoMaterial);
+})
+.WithName("UpdateTiposMateriales")
+.WithOpenApi();
+
+app.MapDelete("/tiposmateriales/{id}", (int id) =>
+{
+    TipoMaterialService tipoMaterialService = new TipoMaterialService();
+
+    tipoMaterialService.Delete(id);
+})
+.WithName("DeleteTiposMateriales")
 .WithOpenApi();
 
 app.Run();
