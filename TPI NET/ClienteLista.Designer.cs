@@ -51,6 +51,7 @@
             btnAgregar.TabIndex = 1;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // btnModificar
             // 
@@ -70,7 +71,7 @@
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
             // 
-            // ListaClientes
+            // ClienteLista
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
