@@ -61,6 +61,7 @@
             btnModificar.TabIndex = 2;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.Click += modificarButton_Click;
             // 
             // btnEliminar
             // 
@@ -70,6 +71,7 @@
             btnEliminar.TabIndex = 3;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += eliminarButton_Click;
             // 
             // ClienteLista
             // 
