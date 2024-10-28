@@ -54,6 +54,7 @@ namespace Dominio.Services
             {
                 materialToUpdate.Cantidad = material.Cantidad;
                 materialToUpdate.Tipo = material.Tipo;
+                materialToUpdate.Visita = material.Visita;
                 context.SaveChanges();
             }
         }

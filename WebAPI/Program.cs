@@ -161,4 +161,139 @@ app.MapDelete("/tiposmateriales/{id}", (int id) =>
 .WithName("DeleteTiposMateriales")
 .WithOpenApi();
 
+app.MapGet("/solicitudes/{id}", (int id) =>
+{
+    SolicitudService solicitudService = new SolicitudService();
+
+    return solicitudService.Get(id);
+})
+.WithName("GetSolicitud")
+.WithOpenApi();
+
+app.MapGet("/solicitudes", () =>
+{
+    SolicitudService solicitudService = new SolicitudService();
+
+    return solicitudService.GetAll();
+})
+.WithName("GetAllSolicitudes")
+.WithOpenApi();
+
+app.MapPost("/solicitudes", (Solicitud solicitud) =>
+{
+    SolicitudService solicitudService = new SolicitudService();
+
+    solicitudService.Add(solicitud);
+})
+.WithName("AddSolicitud")
+.WithOpenApi();
+
+app.MapPut("/solicitudes", (Solicitud solicitud) =>
+{
+    SolicitudService solicitudService = new SolicitudService();
+
+    solicitudService.Update(solicitud);
+})
+.WithName("UpdateSolicitud")
+.WithOpenApi();
+
+app.MapDelete("/solicitudes/{id}", (int id) =>
+{
+    SolicitudService solicitudService = new SolicitudService();
+
+    solicitudService.Delete(id);
+})
+.WithName("DeleteSolicitud")
+.WithOpenApi();
+
+app.MapGet("/tiposolicitudes/{id}", (int id) =>
+{
+    TipoSolicitudService tipoSolicitudService = new TipoSolicitudService();
+
+    return tipoSolicitudService.Get(id);
+})
+.WithName("GetTipoSolicitud")
+.WithOpenApi();
+
+app.MapGet("/tiposolicitudes", () =>
+{
+    TipoSolicitudService tipoSolicitudService = new TipoSolicitudService();
+
+    return tipoSolicitudService.GetAll();
+})
+.WithName("GetAllTipoSolicitudes")
+.WithOpenApi();
+
+app.MapPost("/tiposolicitudes", (TipoSolicitud tipoSolicitud) =>
+{
+    TipoSolicitudService tipoSolicitudService = new TipoSolicitudService();
+
+    tipoSolicitudService.Add(tipoSolicitud);
+})
+.WithName("AddTipoSolicitud")
+.WithOpenApi();
+
+app.MapPut("/tiposolicitudes", (TipoSolicitud tipoSolicitud) =>
+{
+    TipoSolicitudService tipoSolicitudService = new TipoSolicitudService();
+
+    tipoSolicitudService.Update(tipoSolicitud);
+})
+.WithName("UpdateTipoSolicitud")
+.WithOpenApi();
+
+app.MapDelete("/tiposolicitudes/{id}", (int id) =>
+{
+    TipoSolicitudService tipoSolicitudService = new TipoSolicitudService();
+
+    tipoSolicitudService.Delete(id);
+})
+.WithName("DeleteTipoSolicitud")
+.WithOpenApi();
+
+app.MapGet("/visitas/{id}", (int id) =>
+{
+    VisitaService visitaService = new VisitaService();
+
+    return visitaService.Get(id);
+})
+.WithName("GetVisita")
+.WithOpenApi();
+
+app.MapGet("/visitas", () =>
+{
+    VisitaService visitaService = new VisitaService();
+
+    return visitaService.GetAll();
+})
+.WithName("GetAllVisitas")
+.WithOpenApi();
+
+app.MapPost("/visitas", (Visita visita) =>
+{
+    VisitaService visitaService = new VisitaService();
+
+    visitaService.Add(visita);
+})
+.WithName("AddVisita")
+.WithOpenApi();
+
+app.MapPut("/visitas", (Visita visita) =>
+{
+    VisitaService visitaService = new VisitaService();
+
+    visitaService.Update(visita);
+})
+.WithName("UpdateVisita")
+.WithOpenApi();
+
+app.MapDelete("/visitas/{id}", (int id) =>
+{
+    VisitaService visitaService = new VisitaService();
+
+    visitaService.Delete(id);
+})
+.WithName("DeleteVisita")
+.WithOpenApi();
+
 app.Run();
