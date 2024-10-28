@@ -70,21 +70,34 @@ namespace WindowsForms
         private void SetCliente()
         {
             this.nombreTextBox.Text = this.Cliente.Nombre;
+            this.apellidoTextBox.Text = this.Cliente.Apellido;
+            this.razonTextBox.Text = this.Cliente.RazonSocial;
+            this.direccionTextBox.Text = this.Cliente.Direccion;
+            this.telefonoTextBox.Text = this.Cliente.Telefono;
         }
 
         private bool ValidateCliente()
         {
             bool isValid = true;
 
-            errorProvider.SetError(nombreTextBox, string.Empty);
 
-            if (this.nombreTextBox.Text == string.Empty)
-            {
-                isValid = false;
-                errorProvider.SetError(nombreTextBox, "El Nombre es Requerido");
-            }
+            isValid &= textboxIsValid(nombreTextBox, "El Nombre es Requerido");
+            isValid &= textboxIsValid(apellidoTextBox, "El Apellido es Requerido");
+            isValid &= textboxIsValid(direccionTextBox, "La Direccion es Requerida");
+            isValid &= textboxIsValid(telefonoTextBox, "El Teléfono es Requerido");
 
             return isValid;
+        }
+
+        private bool textboxIsValid(TextBox textbox, string errorMessage)
+        {
+            if (textbox.Text == string.Empty)
+            {
+                errorProvider.SetError(textbox, errorMessage);
+                return false;
+            }
+
+            return true;
         }
     }
 }
