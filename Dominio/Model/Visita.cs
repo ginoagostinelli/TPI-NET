@@ -14,7 +14,7 @@ namespace Dominio.Model
         public bool DebeVolver { get; set; }
 
         public DateOnly Fecha { get; set; }
-        public Tecnico Tecnico {  get; set; }
-        public Solicitud Solicitud {  get; set; }
+        public int Tecnico {  get; set; }
+        public int Solicitud {  get; set; }
     }
 }

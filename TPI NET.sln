@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsForms", "TPI NET\WindowsForms.csproj", "{708031F4-5330-47F9-A679-E192983ADD93}"
+	ProjectSection(ProjectDependencies) = postProject
+		{31DAAC85-637B-480D-B524-05059F6391CC} = {31DAAC85-637B-480D-B524-05059F6391CC}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dominio", "Dominio\Dominio.csproj", "{BCC000E8-F680-4B6E-B326-4E7DFF8AFB03}"
 EndProject
