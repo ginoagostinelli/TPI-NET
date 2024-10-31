@@ -42,7 +42,7 @@ namespace WindowsForms
                 this.Cliente.Nombre = nombreTextBox.Text;
                 this.Cliente.Apellido = apellidoTextBox.Text;
                 this.Cliente.RazonSocial = razonTextBox.Text;
-                this.Cliente.Direccion= direccionTextBox.Text;
+                this.Cliente.Direccion = direccionTextBox.Text;
                 this.Cliente.Telefono = telefonoTextBox.Text;
 
                 //El Detalle se esta llevando la responsabilidad de llamar al servicio

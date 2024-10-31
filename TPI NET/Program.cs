@@ -11,7 +11,7 @@ namespace TPI_NET
             // To customize application configuration such as set high DPI settings or default font,
             
             ApplicationConfiguration.Initialize();
-            Application.Run(new MenuPrincipal());
+            Application.Run(new ClienteLista());
         }
     }
 }
