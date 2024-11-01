@@ -30,7 +30,7 @@ namespace WindowsForms
         private async void modificarButton_Click(object sender, EventArgs e)
         {
             TecnicoDetalle tecnicoDetalle = new TecnicoDetalle();
-           
+
             int id;
 
             id = this.SelectedItem().Id;
