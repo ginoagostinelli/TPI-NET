@@ -58,6 +58,8 @@ namespace WindowsForms
         private async void GetAllAndLoad()
         {
             TecnicoApiClient client = new TecnicoApiClient();
+            this.eliminarButton.Enabled = false;
+            this.modificarButton.Enabled = false;
 
             this.tecnicosDataGridView.DataSource = null;
             this.tecnicosDataGridView.DataSource = await TecnicoApiClient.GetAllAsync();
