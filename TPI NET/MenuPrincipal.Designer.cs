@@ -98,7 +98,7 @@
             button5.Name = "button5";
             button5.Size = new Size(135, 43);
             button5.TabIndex = 8;
-            button5.Text = "Materiales";
+            button5.Text = "Tipo Materiales";
             button5.UseVisualStyleBackColor = true;
             button5.Click += materialesButton_Click;
             // 

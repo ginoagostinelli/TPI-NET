@@ -40,12 +40,14 @@ namespace TPI_NET
 
         private void visitasButton_Click(object sender, EventArgs e)
         {
-
+            VisitaLista visitaLista = new VisitaLista();
+            visitaLista.Show();
         }
 
         private void materialesButton_Click(object sender, EventArgs e)
         {
-
+            TipoMaterialLista tipoMaterialLista = new TipoMaterialLista();
+            tipoMaterialLista.Show();
         }
     }
 }
