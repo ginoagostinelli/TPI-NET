@@ -296,4 +296,50 @@ app.MapDelete("/visitas/{id}", (int id) =>
 .WithName("DeleteVisita")
 .WithOpenApi();
 
+app.MapGet("/materiales/{id}", (int id) =>
+{
+    MaterialService materialService = new MaterialService();
+
+    return materialService.Get(id);
+})
+.WithName("GetMateriales")
+.WithOpenApi();
+
+app.MapGet("/materiales", () =>
+{
+    MaterialService materialService = new MaterialService();
+
+    return materialService.GetAll();
+})
+.WithName("GetAllMateriales")
+.WithOpenApi();
+
+app.MapPost("/materiales", (Material material) =>
+{
+    MaterialService materialService = new MaterialService();
+
+    materialService.Add(material);
+})
+.WithName("AddMateriales")
+.WithOpenApi();
+
+app.MapPut("/materiales", (Material material) =>
+{
+    MaterialService materialService = new MaterialService();
+
+    materialService.Update(material);
+})
+.WithName("UpdateMateriales")
+.WithOpenApi();
+
+app.MapDelete("/materiales/{id}", (int id) =>
+{
+    MaterialService materialService = new MaterialService();
+
+    materialService.Delete(id);
+})
+.WithName("DeleteMateriales")
+.WithOpenApi();
+
+
 app.Run();
