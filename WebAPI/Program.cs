@@ -273,7 +273,7 @@ app.MapPost("/visitas", (Visita visita) =>
 {
     VisitaService visitaService = new VisitaService();
 
-    visitaService.Add(visita);
+    return visitaService.Add(visita);
 })
 .WithName("AddVisita")
 .WithOpenApi();

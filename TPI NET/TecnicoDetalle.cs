@@ -43,6 +43,7 @@ namespace WindowsForms
             {
                 this.Tecnico.Nombre = this.nombreTextBox.Text;
                 this.Tecnico.Apellido = this.apellidoTextBox.Text;
+                this.Tecnico.NombreMix = this.apellidoTextBox.Text + ", " + this.nombreTextBox.Text;
                 this.Tecnico.Telefono = this.telefonoTextBox.Text;
                 this.Tecnico.Email = this.emailTextBox.Text;
                 this.Tecnico.Password = this.contraTextBox.Text;
@@ -98,18 +99,18 @@ namespace WindowsForms
             }*/
 
 
-            isValid &= textboxIsValid(nombreTextBox, "El Nombre es Requerido");
-            isValid &= textboxIsValid(apellidoTextBox, "El Apellido es Requerido");
-            isValid &= textboxIsValid(telefonoTextBox, "El Telefono es Requerido");
-            isValid &= textboxIsValid(emailTextBox, "El e-Mail es Requerido");
-            isValid &= textboxIsValid(contraTextBox, "La contraseña es Requerida");
-            isValid &= textboxIsValid(rolComboBox, "El Rol es Requerido");
+            isValid &= controlIsValid(nombreTextBox, "El Nombre es Requerido");
+            isValid &= controlIsValid(apellidoTextBox, "El Apellido es Requerido");
+            isValid &= controlIsValid(telefonoTextBox, "El Telefono es Requerido");
+            isValid &= controlIsValid(emailTextBox, "El e-Mail es Requerido");
+            isValid &= controlIsValid(contraTextBox, "La contraseña es Requerida");
+            isValid &= controlIsValid(rolComboBox, "El Rol es Requerido");
 
 
             return isValid;
         }
 
-        private bool textboxIsValid(Control control, string errorMessage)
+        private bool controlIsValid(Control control, string errorMessage)
         {
             if (control.Text == string.Empty)
             {

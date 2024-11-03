@@ -37,7 +37,7 @@
             direccionLabel = new Label();
             label1 = new Label();
             volverCheckBox = new CheckBox();
-            comboBox1 = new ComboBox();
+            tecnicoComboBox = new ComboBox();
             dataGridView1 = new DataGridView();
             label2 = new Label();
             agregarMaterialbutton = new Button();
@@ -127,13 +127,13 @@
             volverCheckBox.Text = "Se debe volver.";
             volverCheckBox.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // tecnicoComboBox
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(20, 266);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(273, 23);
-            comboBox1.TabIndex = 14;
+            tecnicoComboBox.FormattingEnabled = true;
+            tecnicoComboBox.Location = new Point(20, 266);
+            tecnicoComboBox.Name = "tecnicoComboBox";
+            tecnicoComboBox.Size = new Size(273, 23);
+            tecnicoComboBox.TabIndex = 14;
             // 
             // dataGridView1
             // 
@@ -163,6 +163,7 @@
             agregarMaterialbutton.TabIndex = 17;
             agregarMaterialbutton.Text = "+";
             agregarMaterialbutton.UseVisualStyleBackColor = true;
+            agregarMaterialbutton.Click += agregarMaterialbutton_Click;
             // 
             // eliminarMaterialButton
             // 
@@ -184,7 +185,7 @@
             Controls.Add(agregarMaterialbutton);
             Controls.Add(label2);
             Controls.Add(dataGridView1);
-            Controls.Add(comboBox1);
+            Controls.Add(tecnicoComboBox);
             Controls.Add(volverCheckBox);
             Controls.Add(label1);
             Controls.Add(direccionLabel);
@@ -212,7 +213,7 @@
         private Label direccionLabel;
         private Label label1;
         private CheckBox volverCheckBox;
-        private ComboBox comboBox1;
+        private ComboBox tecnicoComboBox;
         private Button eliminarMaterialButton;
         private Button agregarMaterialbutton;
         private Label label2;

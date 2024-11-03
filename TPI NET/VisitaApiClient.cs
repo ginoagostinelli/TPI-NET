@@ -10,10 +10,10 @@ namespace WindowsForms
 {
     //Revisar si no seria mejor usar metodos estaticos        
 
-    public class TipoMaterialApiClient
+    public class VisitaApiClient
     {
         private static HttpClient client = new HttpClient();
-        static TipoMaterialApiClient()
+        static VisitaApiClient()
         {
             client.BaseAddress = new Uri("http://localhost:5189/");
             client.DefaultRequestHeaders.Accept.Clear();
@@ -22,43 +22,50 @@ namespace WindowsForms
         }
 
 
-        public static async Task<TipoMaterial> GetAsync(int id)
+        public static async Task<Visita> GetAsync(int id)
         {
-            TipoMaterial tipoMaterial = null;
-            HttpResponseMessage response = await client.GetAsync("tiposmateriales/" + id);
+            Visita visita = null;
+            HttpResponseMessage response = await client.GetAsync("visitas/" + id);
             if (response.IsSuccessStatusCode)
             {
-                tipoMaterial = await response.Content.ReadAsAsync<TipoMaterial>();
+                visita = await response.Content.ReadAsAsync<Visita>();
             }
-            return tipoMaterial;
+            return visita;
         }
 
-        public static async Task<IEnumerable<TipoMaterial>> GetAllAsync()
+        public static async Task<IEnumerable<Visita>> GetAllAsync()
         {
-            IEnumerable<TipoMaterial> tipoMaterial = null;
-            HttpResponseMessage response = await client.GetAsync("tiposmateriales");
+            IEnumerable<Visita> visita = null;
+            HttpResponseMessage response = await client.GetAsync("visitas");
             if (response.IsSuccessStatusCode)
             {
-                tipoMaterial = await response.Content.ReadAsAsync<IEnumerable<TipoMaterial>>();
+                visita = await response.Content.ReadAsAsync<IEnumerable<Visita>>();
             }
-            return tipoMaterial;
+            return visita;
         }
 
-        public async static Task AddAsync(TipoMaterial tipoMaterial)
+        public static async Task<Visita> AddAsync(Visita visita)
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync("tiposmateriales", tipoMaterial);
+            Visita visitaSalida = null;
+            HttpResponseMessage response = await client.PostAsJsonAsync("visitas", visita);
             response.EnsureSuccessStatusCode();
+            if (response.IsSuccessStatusCode)
+            {
+                visitaSalida = await response.Content.ReadAsAsync<Visita>();
+            }
+            
+            return visitaSalida;
         }
 
         public static async Task DeleteAsync(int id)
         {
-            HttpResponseMessage response = await client.DeleteAsync("tiposmateriales/" + id);
+            HttpResponseMessage response = await client.DeleteAsync("visita/" + id);
             response.EnsureSuccessStatusCode();
         }
 
-        public static async Task UpdateAsync(TipoMaterial tipoMaterial)
+        public static async Task UpdateAsync(Visita visita)
         {
-            HttpResponseMessage response = await client.PutAsJsonAsync("tiposmateriales", tipoMaterial);
+            HttpResponseMessage response = await client.PutAsJsonAsync("visitas", visita);
             response.EnsureSuccessStatusCode();
         }
     }

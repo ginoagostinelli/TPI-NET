@@ -14,6 +14,7 @@ namespace WindowsForms
     public partial class VisitaDetalle : Form
     {
         private Visita visita;
+        private List<Material> materiales = new List<Material>();
 
         public Visita Visita
         {
@@ -39,15 +40,14 @@ namespace WindowsForms
 
             if (this.ValidateVisita())
             {
-                this.Visita.Descripcion = descripcionTextBox.Text;
-                this.Visita.DebeVolver = apellidoTextBox.Text;
-                this.Visita.Tecnico = razonTextBox.Text;
-                this.Visita.Solicitud = direccionTextBox.Text;
-                this.Visita.Fecha = telefonoTextBox.Text;
+                this.Visita.Descripcion = this.descripcionTextBox.Text;
+                this.Visita.DebeVolver = this.volverCheckBox.Checked;
+                this.Visita.Tecnico = (int)this.tecnicoComboBox.SelectedValue;
+                this.Visita.Solicitud = 1;
+                this.Visita.Fecha = DateTime.UtcNow;
 
-                //El Detalle se esta llevando la responsabilidad de llamar al servicio
-                //pero tal vez deberia ser solo una vista y que esta responsabilidad quede
-                //en la Lista o tal vez en un Presenter o Controler
+                //this.Visita.Solicitud = this.direccionTextBox.Text;
+                //this.Visita.Fecha = this.telefonoTextBox.Text;
 
                 if (this.EditMode)
                 {
@@ -67,13 +67,18 @@ namespace WindowsForms
             this.Close();
         }
 
-        private void SetVisita()
+        private async void SetVisita()
         {
+            this.tecnicoComboBox.DataSource = null;
+            this.tecnicoComboBox.DataSource = await TecnicoApiClient.GetAllAsync();
+            this.tecnicoComboBox.ValueMember = "Id";
+            this.tecnicoComboBox.DisplayMember = "NombreMix";
+
             this.descripcionTextBox.Text = this.Visita.Descripcion;
-            this.apellidoTextBox.Text = this.Visita.DebeVolver;
-            this.razonTextBox.Text = this.Visita.Tecnico;
-            this.direccionTextBox.Text = this.Visita.Solicitud;
-            this.telefonoTextBox.Text = this.Visita.Fecha;
+            this.volverCheckBox.Checked = this.Visita.DebeVolver;
+            this.tecnicoComboBox.SelectedValue = this.Visita.Tecnico;
+            //this.direccionTextBox.Text = this.Visita.Solicitud;
+            //this.telefonoTextBox.Text = this.Visita.Fecha;
         }
 
         private bool ValidateVisita()
@@ -81,23 +86,30 @@ namespace WindowsForms
             bool isValid = true;
 
 
-            isValid &= textboxIsValid(descripcionTextBox, "El Nombre es Requerido");
-            isValid &= textboxIsValid(apellidoTextBox, "El Apellido es Requerido");
-            isValid &= textboxIsValid(direccionTextBox, "La Direccion es Requerida");
-            isValid &= textboxIsValid(telefonoTextBox, "El Teléfono es Requerido");
+            isValid &= controlIsValid(descripcionTextBox, "La Descripcion es Requerida");
+            isValid &= controlIsValid(tecnicoComboBox, "El Tecnico es Requerido");
 
             return isValid;
         }
 
-        private bool textboxIsValid(TextBox textbox, string errorMessage)
+        private bool controlIsValid(Control control, string errorMessage)
         {
-            if (textbox.Text == string.Empty)
+            if (control.Text == string.Empty)
             {
-                errorProvider.SetError(textbox, errorMessage);
+                errorProvider.SetError(control, errorMessage);
                 return false;
             }
 
             return true;
+        }
+
+        private void agregarMaterialbutton_Click(object sender, EventArgs e)
+        {
+            VisitaMaterialDetalle visitaMaterialDetalle = new VisitaMaterialDetalle();
+
+            visitaMaterialDetalle.ShowDialog();
+
+            //this.GetAllAndLoad();
         }
     }
 }

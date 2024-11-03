@@ -61,12 +61,14 @@
             dgvLista.GridColor = SystemColors.InactiveCaption;
             dgvLista.Location = new Point(12, 24);
             dgvLista.Name = "dgvLista";
+            dgvLista.ReadOnly = true;
             dataGridViewCellStyle3.BackColor = Color.DarkGray;
             dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle3.ForeColor = Color.Black;
             dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(128, 128, 255);
             dataGridViewCellStyle3.SelectionForeColor = Color.Black;
             dgvLista.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dgvLista.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvLista.Size = new Size(776, 295);
             dgvLista.TabIndex = 0;
             // 

@@ -9,12 +9,16 @@ namespace Dominio.Services
 {
     public class VisitaService
     {
-        public void Add(Visita visita)
+        public Visita Add(Visita visita)
         {
+            
             using var context = new EmpresaContext();
 
             context.Visitas.Add(visita);
             context.SaveChanges();
+
+            return visita;
+
         }
 
         public void Delete(int id)
