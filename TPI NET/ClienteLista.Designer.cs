@@ -28,52 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             dgvLista = new DataGridView();
             btnAgregar = new Button();
             btnModificar = new Button();
             btnEliminar = new Button();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             SuspendLayout();
             // 
             // dgvLista
             // 
             dgvLista.BackgroundColor = SystemColors.ButtonFace;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvLista.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvLista.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvLista.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvLista.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dgvLista.DefaultCellStyle = dataGridViewCellStyle5;
             dgvLista.GridColor = SystemColors.InactiveCaption;
-            dgvLista.Location = new Point(12, 24);
+            dgvLista.Location = new Point(12, 59);
             dgvLista.Name = "dgvLista";
-            dataGridViewCellStyle3.BackColor = Color.DarkGray;
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(128, 128, 255);
-            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
-            dgvLista.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            dgvLista.Size = new Size(776, 295);
+            dataGridViewCellStyle6.BackColor = Color.DarkGray;
+            dataGridViewCellStyle6.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(128, 128, 255);
+            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
+            dgvLista.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dgvLista.Size = new Size(923, 325);
             dgvLista.TabIndex = 0;
             // 
             // btnAgregar
             // 
             btnAgregar.Font = new Font("Times New Roman", 11.25F);
-            btnAgregar.Location = new Point(204, 343);
+            btnAgregar.Location = new Point(281, 405);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(111, 33);
             btnAgregar.TabIndex = 1;
@@ -84,7 +85,7 @@
             // btnModificar
             // 
             btnModificar.Font = new Font("Times New Roman", 11.25F);
-            btnModificar.Location = new Point(350, 343);
+            btnModificar.Location = new Point(427, 405);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(111, 33);
             btnModificar.TabIndex = 2;
@@ -95,7 +96,7 @@
             // btnEliminar
             // 
             btnEliminar.Font = new Font("Times New Roman", 11.25F);
-            btnEliminar.Location = new Point(498, 343);
+            btnEliminar.Location = new Point(575, 405);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(111, 33);
             btnEliminar.TabIndex = 3;
@@ -103,12 +104,24 @@
             btnEliminar.UseVisualStyleBackColor = true;
             btnEliminar.Click += eliminarButton_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(386, 20);
+            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(153, 26);
+            label1.TabIndex = 13;
+            label1.Text = "Lista Clientes";
+            // 
             // ClienteLista
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(800, 396);
+            ClientSize = new Size(947, 450);
+            Controls.Add(label1);
             Controls.Add(btnEliminar);
             Controls.Add(btnModificar);
             Controls.Add(btnAgregar);
@@ -119,6 +132,7 @@
             Load += ClienteLista_Load;
             ((System.ComponentModel.ISupportInitialize)dgvLista).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -127,5 +141,6 @@
         private Button btnAgregar;
         private Button btnModificar;
         private Button btnEliminar;
+        private Label label1;
     }
 }
