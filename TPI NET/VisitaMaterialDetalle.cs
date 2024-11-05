@@ -13,17 +13,17 @@ namespace WindowsForms
 {
     public partial class VisitaMaterialDetalle : Form
     {
-        //private Tecnico tecnico;
+        private Material material;
         //List<string> roles = new List<string> { "Tecnico", "Supervisor" };
-        /*public Tecnico Tecnico
+        public Material Material
         {
-            get { return tecnico; }
+            get { return material; }
             set
             {
-                tecnico = value;
-                this.SetTecnico();
+                /*tecnico = value;
+                this.SetTecnico();*/
             }
-        }*/
+        }
 
         //Probablemente un Enum seria mas apropiado        
         //public bool EditMode { get; set; } = false;
@@ -35,15 +35,15 @@ namespace WindowsForms
 
         }
 
-        /*private async void aceptarButton_Click(object sender, EventArgs e)
+        private async void aceptarButton_Click(object sender, EventArgs e)
         {
-            TecnicoApiClient client = new TecnicoApiClient();
+            //TecnicoApiClient client = new TecnicoApiClient();
 
-            if (this.ValidateTecnico())
+            if (this.ValidateMaterialDetalle())
             {
-                this.Tecnico.Nombre = this.nombreTextBox.Text;
-                this.Tecnico.Apellido = this.apellidoTextBox.Text;
-                this.Tecnico.NombreMix = this.apellidoTextBox.Text + ", " + this.nombreTextBox.Text;
+                this.Material.Tipo = (int) this.tipoComboBox.SelectedValue;
+                this.Material.Cantidad = (int)this.cantidadUpDown.Value;
+                /*this.Tecnico.NombreMix = this.apellidoTextBox.Text + ", " + this.nombreTextBox.Text;
                 this.Tecnico.Telefono = this.telefonoTextBox.Text;
                 this.Tecnico.Email = this.emailTextBox.Text;
                 this.Tecnico.Password = this.contraTextBox.Text;
@@ -52,24 +52,24 @@ namespace WindowsForms
                 //pero tal vez deberia ser solo una vista y que esta responsabilidad quede
                 //en la Lista o tal vez en un Presenter o Controler
 
-                if (this.EditMode)
+                /*if (this.EditMode)
                 {
                     await TecnicoApiClient.UpdateAsync(this.Tecnico);
                 }
                 else
                 {
                     await TecnicoApiClient.AddAsync(this.Tecnico);
-                }
+                }*/
 
                 this.Close();
             }
         }
-
+        
         private void cancelarButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        */
+        
         private async void SetVisitaMaterial()
         {
             this.tipoComboBox.DataSource = null;
@@ -89,37 +89,37 @@ namespace WindowsForms
         {
             this.SetVisitaMaterial();
         }
-        /*
-private bool ValidateTecnico()
+        
+private bool ValidateMaterialDetalle()
 {
    bool isValid = true;
 
-   errorProvider.SetError(nombreTextBox, string.Empty);
-   errorProvider.SetError(apellidoTextBox, string.Empty);
-   /*if (this.apellidoTextBox.Text == string.Empty)
+   errorProvider.SetError(tipoComboBox, string.Empty);
+   errorProvider.SetError(cantidadUpDown, string.Empty);
+   if ((string) this.tipoComboBox.SelectedValue == string.Empty)
    {
        isValid = false;
-       errorProvider.SetError(apellidoTextBox, "El Apellido es Requerido");
+       errorProvider.SetError(tipoComboBox, "El Tipo de Material es Requerido");
    }
 
-   if (this.nombreTextBox.Text == string.Empty)
+   if ((int) this.cantidadUpDown.Value == 0)
    {
        isValid = false;
-       errorProvider.SetError(nombreTextBox, "El Nombre es Requerido");
-   }*//*
+       errorProvider.SetError(cantidadUpDown, "La Cantidad es Requerida");
+   }
 
 
-   isValid &= controlIsValid(nombreTextBox, "El Nombre es Requerido");
+  /* isValid &= controlIsValid((string)this.tipoComboBox.SelectedValue, "El Nombre es Requerido");
    isValid &= controlIsValid(apellidoTextBox, "El Apellido es Requerido");
    isValid &= controlIsValid(telefonoTextBox, "El Telefono es Requerido");
    isValid &= controlIsValid(emailTextBox, "El e-Mail es Requerido");
    isValid &= controlIsValid(contraTextBox, "La contraseña es Requerida");
    isValid &= controlIsValid(rolComboBox, "El Rol es Requerido");
-
+  */
 
    return isValid;
 }
-
+/*
 private bool controlIsValid(Control control, string errorMessage)
 {
    if (control.Text == string.Empty)
@@ -129,11 +129,7 @@ private bool controlIsValid(Control control, string errorMessage)
    }
 
    return true;
-}
-
-private void TecnicoDetalle_Load(object sender, EventArgs e)
-{
-   rolComboBox.DataSource = roles;
 }*/
+
     }
 }

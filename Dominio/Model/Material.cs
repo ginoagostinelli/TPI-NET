@@ -11,6 +11,6 @@ namespace Dominio.Model
         public int Id { get; set; }
         public int Tipo {  get; set; }
         public int Visita{ get; set; }
-        public string Cantidad { get; set; }
+        public int Cantidad { get; set; }
     }
 }

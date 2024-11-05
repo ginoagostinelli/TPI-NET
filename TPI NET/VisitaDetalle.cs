@@ -108,7 +108,7 @@ namespace WindowsForms
             VisitaMaterialDetalle visitaMaterialDetalle = new VisitaMaterialDetalle();
 
             visitaMaterialDetalle.ShowDialog();
-
+            //CODIGO PARA AGREGAR EL MATERIAL A LA LISTA DE MATERIALES
             //this.GetAllAndLoad();
         }
     }
