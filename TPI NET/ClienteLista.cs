@@ -58,6 +58,8 @@ namespace TPI_NET
         private async void GetAllAndLoad()
         {
             ClienteApiClient client = new ClienteApiClient();
+            this.btnEliminar.Enabled = false;
+            this.btnModificar.Enabled = false;
 
             this.dgvLista.DataSource = null;
             this.dgvLista.DataSource = await ClienteApiClient.GetAllAsync();
