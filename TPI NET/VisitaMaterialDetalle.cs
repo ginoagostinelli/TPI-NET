@@ -13,7 +13,7 @@ namespace WindowsForms
 {
     public partial class VisitaMaterialDetalle : Form
     {
-        private Material material;
+        private Material material = new Material();
         //List<string> roles = new List<string> { "Tecnico", "Supervisor" };
         public Material Material
         {
@@ -41,8 +41,9 @@ namespace WindowsForms
 
             if (this.ValidateMaterialDetalle())
             {
-                this.Material.Tipo = (int) this.tipoComboBox.SelectedValue;
-                this.Material.Cantidad = (int)this.cantidadUpDown.Value;
+                this.material.Cantidad = (int)this.cantidadUpDown.Value;
+                this.material.Tipo = (int) this.tipoComboBox.SelectedValue;
+                
                 /*this.Tecnico.NombreMix = this.apellidoTextBox.Text + ", " + this.nombreTextBox.Text;
                 this.Tecnico.Telefono = this.telefonoTextBox.Text;
                 this.Tecnico.Email = this.emailTextBox.Text;
@@ -64,12 +65,12 @@ namespace WindowsForms
                 this.Close();
             }
         }
-        
+
         private void cancelarButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        
+
         private async void SetVisitaMaterial()
         {
             this.tipoComboBox.DataSource = null;
@@ -89,46 +90,46 @@ namespace WindowsForms
         {
             this.SetVisitaMaterial();
         }
-        
-private bool ValidateMaterialDetalle()
-{
-   bool isValid = true;
 
-   errorProvider.SetError(tipoComboBox, string.Empty);
-   errorProvider.SetError(cantidadUpDown, string.Empty);
-   if ((string) this.tipoComboBox.SelectedValue == string.Empty)
-   {
-       isValid = false;
-       errorProvider.SetError(tipoComboBox, "El Tipo de Material es Requerido");
-   }
+        private bool ValidateMaterialDetalle()
+        {
+            bool isValid = true;
 
-   if ((int) this.cantidadUpDown.Value == 0)
-   {
-       isValid = false;
-       errorProvider.SetError(cantidadUpDown, "La Cantidad es Requerida");
-   }
+            errorProvider.SetError(tipoComboBox, string.Empty);
+            errorProvider.SetError(cantidadUpDown, string.Empty);
+            if (this.tipoComboBox.SelectedValue == null)
+            {
+                isValid = false;
+                errorProvider.SetError(tipoComboBox, "El Tipo de Material es Requerido");
+            }
+
+            if ((int)this.cantidadUpDown.Value == 0)
+            {
+                isValid = false;
+                errorProvider.SetError(cantidadUpDown, "La Cantidad es Requerida");
+            }
 
 
-  /* isValid &= controlIsValid((string)this.tipoComboBox.SelectedValue, "El Nombre es Requerido");
-   isValid &= controlIsValid(apellidoTextBox, "El Apellido es Requerido");
-   isValid &= controlIsValid(telefonoTextBox, "El Telefono es Requerido");
-   isValid &= controlIsValid(emailTextBox, "El e-Mail es Requerido");
-   isValid &= controlIsValid(contraTextBox, "La contraseña es Requerida");
-   isValid &= controlIsValid(rolComboBox, "El Rol es Requerido");
-  */
+            /* isValid &= controlIsValid((string)this.tipoComboBox.SelectedValue, "El Nombre es Requerido");
+             isValid &= controlIsValid(apellidoTextBox, "El Apellido es Requerido");
+             isValid &= controlIsValid(telefonoTextBox, "El Telefono es Requerido");
+             isValid &= controlIsValid(emailTextBox, "El e-Mail es Requerido");
+             isValid &= controlIsValid(contraTextBox, "La contraseña es Requerida");
+             isValid &= controlIsValid(rolComboBox, "El Rol es Requerido");
+            */
 
-   return isValid;
-}
-/*
+            return isValid;
+        }
+        /*
 private bool controlIsValid(Control control, string errorMessage)
 {
-   if (control.Text == string.Empty)
-   {
-       errorProvider.SetError(control, errorMessage);
-       return false;
-   }
+  if (control.Text == string.Empty)
+  {
+      errorProvider.SetError(control, errorMessage);
+      return false;
+  }
 
-   return true;
+  return true;
 }*/
 
     }

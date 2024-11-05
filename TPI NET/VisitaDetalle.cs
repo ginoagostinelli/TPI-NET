@@ -73,6 +73,7 @@ namespace WindowsForms
             this.tecnicoComboBox.DataSource = await TecnicoApiClient.GetAllAsync();
             this.tecnicoComboBox.ValueMember = "Id";
             this.tecnicoComboBox.DisplayMember = "NombreMix";
+            
 
             this.descripcionTextBox.Text = this.Visita.Descripcion;
             this.volverCheckBox.Checked = this.Visita.DebeVolver;
@@ -80,6 +81,28 @@ namespace WindowsForms
             //this.direccionTextBox.Text = this.Visita.Solicitud;
             //this.telefonoTextBox.Text = this.Visita.Fecha;
         }
+
+       /* private async void GetAllAndLoad()
+        {
+            TecnicoApiClient client = new TecnicoApiClient();
+            this.eliminarButton.Enabled = false;
+            this.modificarButton.Enabled = false;
+
+            this.tecnicosDataGridView.DataSource = null;
+            this.tecnicosDataGridView.DataSource = await TecnicoApiClient.GetAllAsync();
+
+            if (this.tecnicosDataGridView.Rows.Count > 0)
+            {
+                this.tecnicosDataGridView.Rows[0].Selected = true;
+                this.eliminarButton.Enabled = true;
+                this.modificarButton.Enabled = true;
+            }
+            else
+            {
+                this.eliminarButton.Enabled = false;
+                this.modificarButton.Enabled = false;
+            }
+        }*/
 
         private bool ValidateVisita()
         {
@@ -109,7 +132,11 @@ namespace WindowsForms
 
             visitaMaterialDetalle.ShowDialog();
             //CODIGO PARA AGREGAR EL MATERIAL A LA LISTA DE MATERIALES
+            materiales.Add(visitaMaterialDetalle.Material);
             //this.GetAllAndLoad();
+            this.materialesGridView.DataSource = null;
+            this.materialesGridView.DataSource = materiales;
+            //EL SEGUNDO MATERIAL NO LO TOMA, NO IMPORTA Q SEA EL MISMO U OTRO
         }
     }
 }

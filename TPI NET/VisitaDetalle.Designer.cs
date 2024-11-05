@@ -38,12 +38,12 @@
             label1 = new Label();
             volverCheckBox = new CheckBox();
             tecnicoComboBox = new ComboBox();
-            dataGridView1 = new DataGridView();
+            materialesGridView = new DataGridView();
             label2 = new Label();
             agregarMaterialbutton = new Button();
             eliminarMaterialButton = new Button();
             ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)materialesGridView).BeginInit();
             SuspendLayout();
             // 
             // descripcionTextBox
@@ -135,13 +135,13 @@
             tecnicoComboBox.Size = new Size(273, 23);
             tecnicoComboBox.TabIndex = 14;
             // 
-            // dataGridView1
+            // materialesGridView
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(338, 95);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(446, 194);
-            dataGridView1.TabIndex = 15;
+            materialesGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            materialesGridView.Location = new Point(338, 95);
+            materialesGridView.Name = "materialesGridView";
+            materialesGridView.Size = new Size(446, 194);
+            materialesGridView.TabIndex = 15;
             // 
             // label2
             // 
@@ -184,7 +184,7 @@
             Controls.Add(eliminarMaterialButton);
             Controls.Add(agregarMaterialbutton);
             Controls.Add(label2);
-            Controls.Add(dataGridView1);
+            Controls.Add(materialesGridView);
             Controls.Add(tecnicoComboBox);
             Controls.Add(volverCheckBox);
             Controls.Add(label1);
@@ -198,7 +198,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Visita";
             ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)materialesGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -217,6 +217,6 @@
         private Button eliminarMaterialButton;
         private Button agregarMaterialbutton;
         private Label label2;
-        private DataGridView dataGridView1;
+        private DataGridView materialesGridView;
     }
 }
