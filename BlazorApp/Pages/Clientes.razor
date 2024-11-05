@@ -1,0 +1,63 @@
+﻿@page "/clientes"
+@inject HttpClient Http
+
+<PageTitle>Lista de Clientes</PageTitle>
+
+<h1>Lista de Clientes</h1>
+
+<p>Listado de todos los clientes cargados en el sistema.</p>
+
+@if (clientes == null)
+{
+    <p><em>Cargando...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>Razón Social</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cliente in clientes)
+            {
+                <tr>
+                    <td>@cliente.Id</td>
+                    <td>@cliente.Apellido</td>
+                    <td>@cliente.Nombre</td>
+                    <td>@cliente.RazonSocial</td>
+                    <td>@cliente.Direccion</td>
+                    <td>@cliente.Telefono</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Cliente[]? clientes;
+
+    private static HttpClient client = new HttpClient();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        clientes = await Http.GetFromJsonAsync<Cliente[]>("http://localhost:5189/clientes");
+    }
+
+    public class Cliente
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string RazonSocial { get; set; }
+        public string Direccion { get; set; }
+        public string Telefono { get; set; }
+    }
+}

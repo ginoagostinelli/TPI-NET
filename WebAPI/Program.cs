@@ -9,7 +9,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpLogging(o => { });
-
+builder.Services.AddCors( options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+        });
+});//PARA BLAZOR
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -21,6 +30,7 @@ if (app.Environment.IsDevelopment())
     app.UseHttpLogging();
 }
 
+app.UseCors("AllowAllOrigins");//PARA BLAZOR
 app.UseHttpsRedirection();
 
 //Actualmente estamos usando los objetos del Domain Model, deberiamos usar ViewModels o DTOs         
