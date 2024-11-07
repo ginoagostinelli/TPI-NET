@@ -14,7 +14,7 @@ namespace WindowsForms
     public partial class VisitaDetalle : Form
     {
         private Visita visita;
-        private List<Material> materiales = new List<Material>();
+        private List<Material>? materiales = new List<Material>();
 
         public Visita Visita
         {
@@ -96,12 +96,14 @@ namespace WindowsForms
         private async void GetAllAndLoad()
         {
             //MaterialApiClient client = new TecnicoApiClient();
+            //IEnumerable<Material> materialesObtenidos = await MaterialApiClient.GetVisitaAsync(this.Visita.Id);
             this.agregarMaterialButton.Enabled = false;
             this.eliminarMaterialButton.Enabled = false;
 
             this.materialesGridView.DataSource = null;
-            this.materialesGridView.DataSource = await MaterialApiClient.GetVisitaAsync(this.Visita.Id);
-
+            materiales = (await MaterialApiClient.GetVisitaAsync(this.Visita.Id)).ToList<Material>();
+            this.materialesGridView.DataSource = materiales;
+            MessageBox.Show(this.materialesGridView.Rows.Count.ToString(), "Question", MessageBoxButtons.YesNo);
             if (this.materialesGridView.Rows.Count > 0)
             {
                 //this.tecnicosDataGridView.Rows[0].Selected = true;

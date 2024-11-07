@@ -97,7 +97,7 @@ namespace Dominio.Services
             List<Material> listaSinFiltrar = context.Materiales.ToList();
 
 
-            return listaSinFiltrar.Where(m => m.Visita == visita);
+            return from m in listaSinFiltrar where m.Visita == visita select m;// listaSinFiltrar.Where(m => m.Visita == visita);
         }
 
         public void Update(Material material)

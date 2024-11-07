@@ -47,7 +47,7 @@ namespace WindowsForms
         public static async Task<IEnumerable<Material>> GetVisitaAsync(int id)
         {
             IEnumerable<Material> material = null;
-            HttpResponseMessage response = await client.GetAsync("listamateriales" + id);
+            HttpResponseMessage response = await client.GetAsync("listamateriales/" + id);
             if (response.IsSuccessStatusCode)
             {
                 material = await response.Content.ReadAsAsync<IEnumerable<Material>>();
@@ -61,9 +61,9 @@ namespace WindowsForms
             response.EnsureSuccessStatusCode();
         }
 
-        public async static Task AddListaAsync(List<Material> materiales)
+        public async static Task AddListaAsync(IEnumerable<Material> materiales)
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync("listamateriales", materiales);
+            HttpResponseMessage response = await client.PostAsJsonAsync("listamateriales", materiales.ToList<Material>());
             response.EnsureSuccessStatusCode();
         }
 

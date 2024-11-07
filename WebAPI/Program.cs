@@ -333,7 +333,7 @@ app.MapPost("/materiales", (Material material) =>
 .WithName("AddMateriales")
 .WithOpenApi();
 
-app.MapPost("/listamateriales", (IEnumerable<Material> materiales) =>
+app.MapPost("/listamateriales", (List<Material> materiales) =>
 {
     MaterialService materialService = new MaterialService();
 

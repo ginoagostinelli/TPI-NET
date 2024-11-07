@@ -137,6 +137,7 @@
             // 
             // materialesGridView
             // 
+            materialesGridView.BackgroundColor = SystemColors.ButtonFace;
             materialesGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             materialesGridView.Location = new Point(338, 95);
             materialesGridView.Name = "materialesGridView";
