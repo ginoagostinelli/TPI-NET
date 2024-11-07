@@ -49,28 +49,22 @@ namespace WindowsForms
 
                 //this.Visita.Solicitud = this.direccionTextBox.Text;
                 //this.Visita.Fecha = this.telefonoTextBox.Text;
-
+                
                 if (this.EditMode)
                 {
                     await VisitaApiClient.UpdateAsync(this.Visita);
+                    foreach (Material material in materiales)
+                    {
+                        material.Visita = this.Visita.Id;
+                    }
                 }
                 else
                 {
                     auxiliar = await VisitaApiClient.AddAsync(this.Visita);
-                }
-
-
-                foreach (Material material in materiales)
-                {
-                    if (auxiliar != null)
+                    foreach (Material material in materiales)
                     {
                         material.Visita = auxiliar.Id;
                     }
-                    else if (this.Visita.Id != 0)
-                    {
-                        material.Visita = this.Visita.Id;
-                    }
-
                 }
 
                 await MaterialApiClient.AddListaAsync(materiales);
@@ -150,9 +144,9 @@ namespace WindowsForms
             visitaMaterialDetalle.ShowDialog();
             //CODIGO PARA AGREGAR EL MATERIAL A LA LISTA DE MATERIALES
             materiales.Add(visitaMaterialDetalle.Material);
-            this.GetAllAndLoad();
-            //this.materialesGridView.DataSource = null;
-            //this.materialesGridView.DataSource = materiales;
+            //this.GetAllAndLoad();
+            this.materialesGridView.DataSource = null;
+            this.materialesGridView.DataSource = materiales;
 
         }
 

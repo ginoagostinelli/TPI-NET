@@ -24,20 +24,22 @@ namespace Dominio.Services
             IEnumerable<Material> listaAlmacenada = null;
             Material auxiliar = null;
 
+            
             //Chequea que todos los Id de Visita sean iguales, sino no hace nada.
             foreach (Material material in materiales)
             {
-                if (id == null)
-                {
+               // if (id == null)
+                //{
                     id = material.Visita;
-                }
+
+                /*}
                 else
                 {
                     if (id != material.Visita) return;
-                }
+                }*/
             }
 
-            if (id == null) return;
+            //if (id == null) return;*/
 
             //Primero busca uno por uno los materiales recibidos entre los guardados por Id, si no lo encuentra lo borra.
             listaAlmacenada = this.GetAllPorVisita((int) id);
