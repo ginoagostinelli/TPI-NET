@@ -40,7 +40,7 @@
             tecnicoComboBox = new ComboBox();
             materialesGridView = new DataGridView();
             label2 = new Label();
-            agregarMaterialbutton = new Button();
+            agregarMaterialButton = new Button();
             eliminarMaterialButton = new Button();
             ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             ((System.ComponentModel.ISupportInitialize)materialesGridView).BeginInit();
@@ -154,16 +154,16 @@
             label2.TabIndex = 16;
             label2.Text = "Materiales utillizados";
             // 
-            // agregarMaterialbutton
+            // agregarMaterialButton
             // 
-            agregarMaterialbutton.Font = new Font("Arial Black", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            agregarMaterialbutton.Location = new Point(790, 94);
-            agregarMaterialbutton.Name = "agregarMaterialbutton";
-            agregarMaterialbutton.Size = new Size(25, 45);
-            agregarMaterialbutton.TabIndex = 17;
-            agregarMaterialbutton.Text = "+";
-            agregarMaterialbutton.UseVisualStyleBackColor = true;
-            agregarMaterialbutton.Click += agregarMaterialbutton_Click;
+            agregarMaterialButton.Font = new Font("Arial Black", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            agregarMaterialButton.Location = new Point(790, 94);
+            agregarMaterialButton.Name = "agregarMaterialButton";
+            agregarMaterialButton.Size = new Size(25, 45);
+            agregarMaterialButton.TabIndex = 17;
+            agregarMaterialButton.Text = "+";
+            agregarMaterialButton.UseVisualStyleBackColor = true;
+            agregarMaterialButton.Click += agregarMaterialbutton_Click;
             // 
             // eliminarMaterialButton
             // 
@@ -182,7 +182,7 @@
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(842, 368);
             Controls.Add(eliminarMaterialButton);
-            Controls.Add(agregarMaterialbutton);
+            Controls.Add(agregarMaterialButton);
             Controls.Add(label2);
             Controls.Add(materialesGridView);
             Controls.Add(tecnicoComboBox);
@@ -197,6 +197,7 @@
             Name = "VisitaDetalle";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Visita";
+            Load += VisitaDetalle_Load;
             ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             ((System.ComponentModel.ISupportInitialize)materialesGridView).EndInit();
             ResumeLayout(false);
@@ -215,7 +216,7 @@
         private CheckBox volverCheckBox;
         private ComboBox tecnicoComboBox;
         private Button eliminarMaterialButton;
-        private Button agregarMaterialbutton;
+        private Button agregarMaterialButton;
         private Label label2;
         private DataGridView materialesGridView;
     }

@@ -37,6 +37,7 @@ namespace WindowsForms
         private async void aceptarButton_Click(object sender, EventArgs e)
         {
             VisitaApiClient client = new VisitaApiClient();
+            Visita auxiliar = null;
 
             if (this.ValidateVisita())
             {
@@ -55,8 +56,24 @@ namespace WindowsForms
                 }
                 else
                 {
-                    await VisitaApiClient.AddAsync(this.Visita);
+                    auxiliar = await VisitaApiClient.AddAsync(this.Visita);
                 }
+
+
+                foreach (Material material in materiales)
+                {
+                    if (auxiliar != null)
+                    {
+                        material.Visita = auxiliar.Id;
+                    }
+                    else if (this.Visita.Id != 0)
+                    {
+                        material.Visita = this.Visita.Id;
+                    }
+
+                }
+
+                await MaterialApiClient.AddListaAsync(materiales);
 
                 this.Close();
             }
@@ -73,7 +90,7 @@ namespace WindowsForms
             this.tecnicoComboBox.DataSource = await TecnicoApiClient.GetAllAsync();
             this.tecnicoComboBox.ValueMember = "Id";
             this.tecnicoComboBox.DisplayMember = "NombreMix";
-            
+
 
             this.descripcionTextBox.Text = this.Visita.Descripcion;
             this.volverCheckBox.Checked = this.Visita.DebeVolver;
@@ -82,27 +99,27 @@ namespace WindowsForms
             //this.telefonoTextBox.Text = this.Visita.Fecha;
         }
 
-       /* private async void GetAllAndLoad()
+        private async void GetAllAndLoad()
         {
-            TecnicoApiClient client = new TecnicoApiClient();
-            this.eliminarButton.Enabled = false;
-            this.modificarButton.Enabled = false;
+            //MaterialApiClient client = new TecnicoApiClient();
+            this.agregarMaterialButton.Enabled = false;
+            this.eliminarMaterialButton.Enabled = false;
 
-            this.tecnicosDataGridView.DataSource = null;
-            this.tecnicosDataGridView.DataSource = await TecnicoApiClient.GetAllAsync();
+            this.materialesGridView.DataSource = null;
+            this.materialesGridView.DataSource = await MaterialApiClient.GetVisitaAsync(this.Visita.Id);
 
-            if (this.tecnicosDataGridView.Rows.Count > 0)
+            if (this.materialesGridView.Rows.Count > 0)
             {
-                this.tecnicosDataGridView.Rows[0].Selected = true;
-                this.eliminarButton.Enabled = true;
-                this.modificarButton.Enabled = true;
+                //this.tecnicosDataGridView.Rows[0].Selected = true;
+                this.agregarMaterialButton.Enabled = true;
+                this.eliminarMaterialButton.Enabled = true;
             }
             else
             {
-                this.eliminarButton.Enabled = false;
-                this.modificarButton.Enabled = false;
+                this.agregarMaterialButton.Enabled = true;
+                this.eliminarMaterialButton.Enabled = false;
             }
-        }*/
+        }
 
         private bool ValidateVisita()
         {
@@ -133,10 +150,15 @@ namespace WindowsForms
             visitaMaterialDetalle.ShowDialog();
             //CODIGO PARA AGREGAR EL MATERIAL A LA LISTA DE MATERIALES
             materiales.Add(visitaMaterialDetalle.Material);
-            //this.GetAllAndLoad();
-            this.materialesGridView.DataSource = null;
-            this.materialesGridView.DataSource = materiales;
-            //EL SEGUNDO MATERIAL NO LO TOMA, NO IMPORTA Q SEA EL MISMO U OTRO
+            this.GetAllAndLoad();
+            //this.materialesGridView.DataSource = null;
+            //this.materialesGridView.DataSource = materiales;
+
+        }
+
+        private void VisitaDetalle_Load(object sender, EventArgs e)
+        {
+            this.GetAllAndLoad();
         }
     }
 }

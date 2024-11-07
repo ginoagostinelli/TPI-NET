@@ -9,11 +9,56 @@ namespace Dominio.Services
 {
     public class MaterialService
     {
-        public void Add(Material tipoMaterial)
+        public void Add(Material material)
         {
             using var context = new EmpresaContext();
 
-            context.Materiales.Add(tipoMaterial);
+            context.Materiales.Add(material);
+            context.SaveChanges();
+        }
+
+        public void AddLista(IEnumerable<Material> materiales)
+        {
+            int? id = null;
+            using var context = new EmpresaContext();
+            IEnumerable<Material> listaAlmacenada = null;
+            Material auxiliar = null;
+
+            //Chequea que todos los Id de Visita sean iguales, sino no hace nada.
+            foreach (Material material in materiales)
+            {
+                if (id == null)
+                {
+                    id = material.Visita;
+                }
+                else
+                {
+                    if (id != material.Visita) return;
+                }
+            }
+
+            if (id == null) return;
+
+            //Primero busca uno por uno los materiales recibidos entre los guardados por Id, si no lo encuentra lo borra.
+            listaAlmacenada = this.GetAllPorVisita((int) id);
+            foreach (Material material in listaAlmacenada)
+            {
+                auxiliar = materiales.First(m => m.Id == material.Id);
+                if (auxiliar == null)
+                {
+                    this.Delete(material.Id);
+                }
+            }
+
+            //Agrega los materiales con Id == 0
+            foreach (Material material in materiales)
+            {
+                if(material.Id == 0)
+                {
+                    this.Add(material);
+                }
+            }
+
             context.SaveChanges();
         }
 
@@ -42,6 +87,15 @@ namespace Dominio.Services
             using var context = new EmpresaContext();
 
             return context.Materiales.ToList();
+        }
+
+        public IEnumerable<Material> GetAllPorVisita(int visita)
+        {
+            using var context = new EmpresaContext();
+            List<Material> listaSinFiltrar = context.Materiales.ToList();
+
+
+            return listaSinFiltrar.Where(m => m.Visita == visita);
         }
 
         public void Update(Material material)

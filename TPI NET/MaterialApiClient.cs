@@ -44,9 +44,26 @@ namespace WindowsForms
             return material;
         }
 
+        public static async Task<IEnumerable<Material>> GetVisitaAsync(int id)
+        {
+            IEnumerable<Material> material = null;
+            HttpResponseMessage response = await client.GetAsync("listamateriales" + id);
+            if (response.IsSuccessStatusCode)
+            {
+                material = await response.Content.ReadAsAsync<IEnumerable<Material>>();
+            }
+            return material;
+        }
+
         public async static Task AddAsync(Material material)
         {
             HttpResponseMessage response = await client.PostAsJsonAsync("materiales", material);
+            response.EnsureSuccessStatusCode();
+        }
+
+        public async static Task AddListaAsync(IEnumerable<Material> materiales)
+        {
+            HttpResponseMessage response = await client.PostAsJsonAsync("listamateriales", materiales);
             response.EnsureSuccessStatusCode();
         }
 

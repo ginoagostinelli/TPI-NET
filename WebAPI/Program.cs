@@ -333,6 +333,24 @@ app.MapPost("/materiales", (Material material) =>
 .WithName("AddMateriales")
 .WithOpenApi();
 
+app.MapPost("/listamateriales", (IEnumerable<Material> materiales) =>
+{
+    MaterialService materialService = new MaterialService();
+
+    materialService.AddLista(materiales);
+})
+.WithName("AddListaMateriales")
+.WithOpenApi();
+
+app.MapGet("/listamateriales/{id}", (int id) =>
+{
+    MaterialService materialService = new MaterialService();
+
+    return materialService.GetAllPorVisita(id);
+})
+.WithName("GetVisitaMateriales")
+.WithOpenApi();
+
 app.MapPut("/materiales", (Material material) =>
 {
     MaterialService materialService = new MaterialService();
