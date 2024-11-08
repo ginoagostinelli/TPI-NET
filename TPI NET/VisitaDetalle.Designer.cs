@@ -141,6 +141,7 @@
             materialesGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             materialesGridView.Location = new Point(338, 95);
             materialesGridView.Name = "materialesGridView";
+            materialesGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             materialesGridView.Size = new Size(446, 194);
             materialesGridView.TabIndex = 15;
             // 
@@ -175,6 +176,7 @@
             eliminarMaterialButton.TabIndex = 18;
             eliminarMaterialButton.Text = "-";
             eliminarMaterialButton.UseVisualStyleBackColor = true;
+            eliminarMaterialButton.Click += eliminarMaterialButton_Click;
             // 
             // VisitaDetalle
             // 

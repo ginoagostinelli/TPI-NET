@@ -28,24 +28,24 @@ namespace Dominio.Services
             //Chequea que todos los Id de Visita sean iguales, sino no hace nada.
             foreach (Material material in materiales)
             {
-               // if (id == null)
-                //{
+                if (id == null)
+                {
                     id = material.Visita;
 
-                /*}
+                }
                 else
                 {
                     if (id != material.Visita) return;
-                }*/
+                }
             }
 
-            //if (id == null) return;*/
+            if (id == null) return;//corregir porque sino nunca va a eliminar el ultimo elemento que quede en la lista(si la lista enviada no tiene elementos, id va a ser null
 
             //Primero busca uno por uno los materiales recibidos entre los guardados por Id, si no lo encuentra lo borra.
             listaAlmacenada = this.GetAllPorVisita((int) id);
             foreach (Material material in listaAlmacenada)
             {
-                auxiliar = materiales.First(m => m.Id == material.Id);
+                auxiliar = materiales.FirstOrDefault(m => m.Id == material.Id);
                 if (auxiliar == null)
                 {
                     this.Delete(material.Id);

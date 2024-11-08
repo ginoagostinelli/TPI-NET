@@ -49,7 +49,7 @@ namespace WindowsForms
 
                 //this.Visita.Solicitud = this.direccionTextBox.Text;
                 //this.Visita.Fecha = this.telefonoTextBox.Text;
-                
+
                 if (this.EditMode)
                 {
                     await VisitaApiClient.UpdateAsync(this.Visita);
@@ -103,7 +103,7 @@ namespace WindowsForms
             this.materialesGridView.DataSource = null;
             materiales = (await MaterialApiClient.GetVisitaAsync(this.Visita.Id)).ToList<Material>();
             this.materialesGridView.DataSource = materiales;
-            MessageBox.Show(this.materialesGridView.Rows.Count.ToString(), "Question", MessageBoxButtons.YesNo);
+           // MessageBox.Show(this.materialesGridView.Rows.Count.ToString(), "Question", MessageBoxButtons.YesNo);
             if (this.materialesGridView.Rows.Count > 0)
             {
                 //this.tecnicosDataGridView.Rows[0].Selected = true;
@@ -155,6 +155,15 @@ namespace WindowsForms
         private void VisitaDetalle_Load(object sender, EventArgs e)
         {
             this.GetAllAndLoad();
+        }
+
+        private async void eliminarMaterialButton_Click(object sender, EventArgs e)
+        {
+            int id = (int) materialesGridView.SelectedRows[0].Cells[0].Value;
+            materiales.RemoveAll(r => r.Id == id);
+            this.materialesGridView.DataSource = null;
+            this.materialesGridView.DataSource = materiales;
+
         }
     }
 }
