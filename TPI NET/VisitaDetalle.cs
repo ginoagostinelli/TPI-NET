@@ -53,21 +53,23 @@ namespace WindowsForms
                 if (this.EditMode)
                 {
                     await VisitaApiClient.UpdateAsync(this.Visita);
-                    foreach (Material material in materiales)
+                    /*foreach (Material material in materiales)
                     {
                         material.Visita = this.Visita.Id;
-                    }
+                    }*/
+                    await MaterialApiClient.AddListaAsync(materiales, this.Visita.Id);
                 }
                 else
                 {
                     auxiliar = await VisitaApiClient.AddAsync(this.Visita);
-                    foreach (Material material in materiales)
+                    /*foreach (Material material in materiales)
                     {
                         material.Visita = auxiliar.Id;
-                    }
+                    }*/
+                    await MaterialApiClient.AddListaAsync(materiales, auxiliar.Id);
                 }
 
-                await MaterialApiClient.AddListaAsync(materiales);
+                //await MaterialApiClient.AddListaAsync(materiales, this.Visita.Id);
 
                 this.Close();
             }
@@ -155,6 +157,7 @@ namespace WindowsForms
         private void VisitaDetalle_Load(object sender, EventArgs e)
         {
             this.GetAllAndLoad();
+            //this.materialesGridView.Columns["Id"].Visible = false;
         }
 
         private async void eliminarMaterialButton_Click(object sender, EventArgs e)

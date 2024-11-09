@@ -61,9 +61,9 @@ namespace WindowsForms
             response.EnsureSuccessStatusCode();
         }
 
-        public async static Task AddListaAsync(IEnumerable<Material> materiales)
+        public async static Task AddListaAsync(IEnumerable<Material> materiales, int id)
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync("listamateriales", materiales.ToList<Material>());
+            HttpResponseMessage response = await client.PostAsJsonAsync("listamateriales/"+ id + "", materiales.ToList<Material>());
             response.EnsureSuccessStatusCode();
         }
 

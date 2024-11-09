@@ -333,11 +333,11 @@ app.MapPost("/materiales", (Material material) =>
 .WithName("AddMateriales")
 .WithOpenApi();
 
-app.MapPost("/listamateriales", (List<Material> materiales) =>
+app.MapPost("/listamateriales/{id}", (List<Material> materiales, int id) =>
 {
     MaterialService materialService = new MaterialService();
 
-    materialService.AddLista(materiales);
+    materialService.AddLista(materiales, id);
 })
 .WithName("AddListaMateriales")
 .WithOpenApi();

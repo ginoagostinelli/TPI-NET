@@ -17,18 +17,18 @@ namespace Dominio.Services
             context.SaveChanges();
         }
 
-        public void AddLista(IEnumerable<Material> materiales)
+        public void AddLista(IEnumerable<Material> materiales, int id)
         {
-            int? id = null;
+            //int? id = null;
             using var context = new EmpresaContext();
             IEnumerable<Material> listaAlmacenada = null;
             Material auxiliar = null;
 
             
             //Chequea que todos los Id de Visita sean iguales, sino no hace nada.
-            foreach (Material material in materiales)
+            /*foreach (Material material in materiales)
             {
-                if (id == null)
+                /*if (id == null)
                 {
                     id = material.Visita;
 
@@ -37,9 +37,9 @@ namespace Dominio.Services
                 {
                     if (id != material.Visita) return;
                 }
-            }
+            }*/
 
-            if (id == null) return;//corregir porque sino nunca va a eliminar el ultimo elemento que quede en la lista(si la lista enviada no tiene elementos, id va a ser null
+            //if (id == null) return;//corregir porque sino nunca va a eliminar el ultimo elemento que quede en la lista(si la lista enviada no tiene elementos, id va a ser null
 
             //Primero busca uno por uno los materiales recibidos entre los guardados por Id, si no lo encuentra lo borra.
             listaAlmacenada = this.GetAllPorVisita((int) id);
@@ -57,6 +57,7 @@ namespace Dominio.Services
             {
                 if(material.Id == 0)
                 {
+                    material.Visita = id;
                     this.Add(material);
                 }
             }
