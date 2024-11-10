@@ -18,6 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="SolicitudDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="SolicitudLista.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="VisitaMaterialDetalle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -38,9 +44,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="TipoMaterialLista.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="TipoMaterialLista.cs" />
   </ItemGroup>
 
   <ItemGroup>

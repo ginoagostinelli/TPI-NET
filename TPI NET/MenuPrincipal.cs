@@ -32,6 +32,8 @@ namespace TPI_NET
 
         private void solicitudesButton_Click(object sender, EventArgs e)
         {
+            SolicitudLista solicitudLista = new SolicitudLista();
+            solicitudLista.Show();
         }
 
         private void tipoSolicitudesButton_Click(object sender, EventArgs e)
