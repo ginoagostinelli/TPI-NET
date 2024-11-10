@@ -59,7 +59,7 @@ namespace WindowsForms
 
         public static async Task DeleteAsync(int id)
         {
-            HttpResponseMessage response = await client.DeleteAsync("visita/" + id);
+            HttpResponseMessage response = await client.DeleteAsync("visitas/" + id);
             response.EnsureSuccessStatusCode();
         }
 
