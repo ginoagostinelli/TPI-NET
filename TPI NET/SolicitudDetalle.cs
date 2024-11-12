@@ -17,8 +17,6 @@ namespace WindowsForms
                 this.SetSolicitud();
             }
         }
-
-        //Probablemente un Enum seria mas apropiado        
         public bool EditMode { get; set; } = false;
 
         public SolicitudDetalle()
@@ -35,7 +33,7 @@ namespace WindowsForms
                 this.Solicitud.Estado = estadoBox.Text;
                 this.Solicitud.Motivo = motivoBox.Text;
                 this.Solicitud.Conclusion = conclusionBox.Text;
-                this.Solicitud.Tipo = 1;
+                this.Solicitud.Tipo = (int) tipoBox.SelectedValue;
                 this.Solicitud.Cliente = (int) clienteBox.SelectedValue;
 
                 this.Solicitud.Fecha = DateTime.Today;
@@ -64,7 +62,13 @@ namespace WindowsForms
             this.motivoBox.Text = this.Solicitud.Motivo;
             this.fechaBox.Text = DateTime.Today.ToString("dd-MM-yyyy");
             this.conclusionBox.Text = this.Solicitud.Conclusion;
-            //this.tipoBox.Text = this.Solicitud.Tipo;
+
+            this.tipoBox.DataSource = null;
+            this.tipoBox.DataSource = await TipoSolicitudApiClient.GetAllAsync();
+            this.tipoBox.ValueMember = "Id";
+            this.tipoBox.DisplayMember = "Nombre";
+
+
             this.clienteBox.DataSource = null;
             this.clienteBox.DataSource = await ClienteApiClient.GetAllAsync();
             this.clienteBox.ValueMember = "Id";
@@ -77,7 +81,6 @@ namespace WindowsForms
 
             isValid &= textboxIsValid(estadoBox, "El Estado es Requerido");
             isValid &= textboxIsValid(motivoBox, "El Motivo es Requerido");
-            isValid &= textboxIsValid(conclusionBox, "La Conclusion es Requerida");
             isValid &= textboxIsValid(tipoBox, "El Tipo es Requerido");
             isValid &= textboxIsValid(clienteBox, "El Cliente es Requerido");
 

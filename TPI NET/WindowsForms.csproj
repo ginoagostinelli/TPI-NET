@@ -21,6 +21,12 @@
     <Compile Update="TipoSolicitudDetalle.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="TipoSolicitudLista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="TipoSolicitudDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="SolicitudDetalle.cs">
       <SubType>Form</SubType>
     </Compile>
