@@ -6,7 +6,7 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace WindowsForms
+namespace TPI_NET.APIs
 {
     //Revisar si no seria mejor usar metodos estaticos        
 
@@ -63,7 +63,7 @@ namespace WindowsForms
 
         public async static Task AddListaAsync(IEnumerable<Material> materiales, int id)
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync("listamateriales/"+ id + "", materiales.ToList<Material>());
+            HttpResponseMessage response = await client.PostAsJsonAsync("listamateriales/" + id + "", materiales.ToList());
             response.EnsureSuccessStatusCode();
         }
 

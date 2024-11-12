@@ -6,7 +6,7 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace WindowsForms
+namespace TPI_NET.APIs
 {
 
     public class SolicitudApiClient
@@ -52,7 +52,7 @@ namespace WindowsForms
             {
                 solicitud = await response.Content.ReadAsAsync<Solicitud>();
             }
-            
+
             return solicitudSalida;
         }
 
