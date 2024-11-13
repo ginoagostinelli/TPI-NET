@@ -1,4 +1,5 @@
 ﻿using Dominio.Model;
+using System.Data;
 using TPI_NET.APIs;
 
 
@@ -7,6 +8,7 @@ namespace WindowsForms
     public partial class SolicitudDetalle : Form
     {
         private Solicitud solicitud;
+        List<string> estadosSolicitud = new List<string> { "En Curso", "Cancelada", "Completada" };
 
         public Solicitud Solicitud
         {
@@ -33,8 +35,8 @@ namespace WindowsForms
                 this.Solicitud.Estado = estadoBox.Text;
                 this.Solicitud.Motivo = motivoBox.Text;
                 this.Solicitud.Conclusion = conclusionBox.Text;
-                this.Solicitud.Tipo = (int) tipoBox.SelectedValue;
-                this.Solicitud.Cliente = (int) clienteBox.SelectedValue;
+                this.Solicitud.Tipo = (int)tipoBox.SelectedValue;
+                this.Solicitud.Cliente = (int)clienteBox.SelectedValue;
 
                 this.Solicitud.Fecha = DateTime.Today;
 
@@ -96,6 +98,11 @@ namespace WindowsForms
             }
 
             return true;
+        }
+
+        private void SolicitudDetalle_Load(object sender, EventArgs e)
+        {
+            estadoBox.DataSource = estadosSolicitud;
         }
     }
 }

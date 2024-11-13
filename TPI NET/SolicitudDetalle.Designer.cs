@@ -202,12 +202,14 @@
             // 
             // estadoBox
             // 
+            estadoBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+            estadoBox.DisplayMember = "En Curso";
             estadoBox.FormattingEnabled = true;
-            estadoBox.Items.AddRange(new object[] { "En curso", "Completado", "Cancelada" });
             estadoBox.Location = new Point(22, 105);
             estadoBox.Name = "estadoBox";
             estadoBox.Size = new Size(273, 23);
             estadoBox.TabIndex = 22;
+            estadoBox.ValueMember = "En Curso";
             // 
             // SolicitudDetalle
             // 
@@ -234,6 +236,7 @@
             Name = "SolicitudDetalle";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Solicitud";
+            Load += SolicitudDetalle_Load;
             ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             ResumeLayout(false);
             PerformLayout();
