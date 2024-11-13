@@ -48,10 +48,12 @@ namespace WindowsForms
 
         private async void eliminarButton_Click(object sender, EventArgs e)
         {
-            int id;
+            int id = this.SelectedItem().Id;
 
-            id = this.SelectedItem().Id;
-            await SolicitudApiClient.DeleteAsync(id);
+            if (MessageBox.Show("¿Está seguro que desea eliminar solicitud (Id: \"" + id + "\")?", "Eliminar Solicitud Id: " + id, MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                await SolicitudApiClient.DeleteAsync(id);
+            }
 
             this.GetAllAndLoad();
         }

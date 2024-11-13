@@ -48,10 +48,13 @@ namespace TPI_NET
 
         private async void eliminarButton_Click(object sender, EventArgs e)
         {
-            int id;
+            int id = this.SelectedItem().Id;
+            string nombreMix = this.SelectedItem().NombreMix;
 
-            id = this.SelectedItem().Id;
-            await ClienteApiClient.DeleteAsync(id);
+            if (MessageBox.Show("¿Está seguro que desea eliminar el cliente: \"" + nombreMix + "\"?", "Eliminar cliente Id: " + id, MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                await ClienteApiClient.DeleteAsync(id);
+            }
 
             this.GetAllAndLoad();
         }
