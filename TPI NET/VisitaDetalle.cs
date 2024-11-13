@@ -16,6 +16,7 @@ namespace WindowsForms
     {
         private Visita visita;
         private List<Material>? materiales = new List<Material>();
+        private IEnumerable<TipoMaterial> tipos;
 
         public Visita Visita
         {
@@ -98,15 +99,24 @@ namespace WindowsForms
 
         private async void GetAllAndLoad()
         {
-            //MaterialApiClient client = new TecnicoApiClient();
-            //IEnumerable<Material> materialesObtenidos = await MaterialApiClient.GetVisitaAsync(this.Visita.Id);
+            
             this.agregarMaterialButton.Enabled = false;
             this.eliminarMaterialButton.Enabled = false;
 
             this.materialesGridView.DataSource = null;
             materiales = (await MaterialApiClient.GetVisitaAsync(this.Visita.Id)).ToList<Material>();
-            this.materialesGridView.DataSource = materiales;
-           // MessageBox.Show(this.materialesGridView.Rows.Count.ToString(), "Question", MessageBoxButtons.YesNo);
+            tipos = await TipoMaterialApiClient.GetAllAsync();
+            //this.materialesGridView.DataSource = materiales;
+            this.materialesGridView.DataSource = (from m in materiales
+                                                  join t in this.tipos
+                                                  on m.Tipo equals t.Id
+                                                  select new
+                                                  {
+                                                      Id = m.Id,
+                                                      Descripcion = t.Descripcion,
+                                                      Cantidad = m.Cantidad,
+
+                                                  }).ToList();
             if (this.materialesGridView.Rows.Count > 0)
             {
                 //this.tecnicosDataGridView.Rows[0].Selected = true;
@@ -163,10 +173,19 @@ namespace WindowsForms
 
         private async void eliminarMaterialButton_Click(object sender, EventArgs e)
         {
-            int id = (int) materialesGridView.SelectedRows[0].Cells[0].Value;
+            int id = (int) materialesGridView.SelectedRows[0].Cells["Id"].Value;
             materiales.RemoveAll(r => r.Id == id);
             this.materialesGridView.DataSource = null;
-            this.materialesGridView.DataSource = materiales;
+            this.materialesGridView.DataSource = (from m in materiales
+                                                  join t in this.tipos
+                                                  on m.Tipo equals t.Id
+                                                  select new
+                                                  {
+                                                      Id = m.Id,
+                                                      Descripcion = t.Descripcion,
+                                                      Cantidad = m.Cantidad,
+
+                                                  }).ToList();
 
         }
     }

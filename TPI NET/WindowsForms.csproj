@@ -39,9 +39,7 @@
     <Compile Update="VisitaDetalle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="VisitaLista.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="VisitaLista.cs" />
     <Compile Update="TipoMaterialDetalle.cs">
       <SubType>Form</SubType>
     </Compile>

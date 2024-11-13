@@ -49,9 +49,15 @@ namespace WindowsForms
         private async void eliminarButton_Click(object sender, EventArgs e)
         {
             int id;
+            string descripcionMaterial;
 
             id = this.SelectedItem().Id;
-            await TipoMaterialApiClient.DeleteAsync(id);
+            descripcionMaterial = this.SelectedItem().Descripcion;
+
+            if (MessageBox.Show("¿Está seguro que desea eliminar \"" + descripcionMaterial + "\"?", "Eliminar material Id: " + id, MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                await TipoMaterialApiClient.DeleteAsync(id);
+            }
 
             this.GetAllAndLoad();
         }

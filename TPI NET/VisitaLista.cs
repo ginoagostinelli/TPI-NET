@@ -1,4 +1,5 @@
 using Dominio.Model;
+using System.Data;
 using TPI_NET.APIs;
 using WindowsForms;
 
@@ -6,6 +7,7 @@ namespace TPI_NET
 {
     public partial class VisitaLista : Form
     {
+        IEnumerable<Visita> visitas = null;
         public VisitaLista()
         {
             InitializeComponent();
@@ -49,20 +51,36 @@ namespace TPI_NET
         private async void eliminarButton_Click(object sender, EventArgs e)
         {
             int id;
-
+            List<Material> materiales = new List<Material>();
             id = this.SelectedItem().Id;
-            await VisitaApiClient.DeleteAsync(id);
-
+            if(MessageBox.Show("¿Está seguro que desea eliminar la visita Id: " + id + "?", "Eliminar visita Id: " + id, MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                await VisitaApiClient.DeleteAsync(id);
+                await MaterialApiClient.AddListaAsync(materiales, id);
+            }
             this.GetAllAndLoad();
         }
 
         private async void GetAllAndLoad()
         {
-            VisitaApiClient client = new VisitaApiClient();
+            //VisitaApiClient client = new VisitaApiClient();
+            //TecnicoApiClient tecnicoClient = new TecnicoApiClient();
+            this.visitas = await VisitaApiClient.GetAllAsync();
+            IEnumerable<Tecnico> tecnicos = await TecnicoApiClient.GetAllAsync();
 
             this.dgvLista.DataSource = null;
-            this.dgvLista.DataSource = await VisitaApiClient.GetAllAsync();
-
+            this.dgvLista.DataSource = (from v in this.visitas
+                                        join t in tecnicos
+                                        on v.Tecnico equals t.Id
+                                        select new
+                                        {
+                                            Id = v.Id,
+                                            Descripcion = v.Descripcion,
+                                            DebeVolver = v.DebeVolver,
+                                            Fecha = v.Fecha,
+                                            Tecnico = t.NombreMix,
+                                        }).ToList();
+            
             if (this.dgvLista.Rows.Count > 0)
             {
                 this.dgvLista.Rows[0].Selected = true;
@@ -76,11 +94,14 @@ namespace TPI_NET
             }
         }
 
-        private Visita SelectedItem()
+        private Visita? SelectedItem()
         {
-            Visita visita;
+            Visita? visita;
 
-            visita = (Visita)dgvLista.SelectedRows[0].DataBoundItem;
+            //visita = (Visita)dgvLista.SelectedRows[0].DataBoundItem;
+            visita = (from v in this.visitas
+                        where v.Id == (int)dgvLista.SelectedRows[0].Cells["Id"].Value
+                        select v).FirstOrDefault();
 
             return visita;
         }

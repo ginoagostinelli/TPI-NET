@@ -49,10 +49,14 @@ namespace WindowsForms
         private async void eliminarButton_Click(object sender, EventArgs e)
         {
             int id;
+            string nombreMixTecnico;
 
             id = this.SelectedItem().Id;
-            await TecnicoApiClient.DeleteAsync(id);
-
+            nombreMixTecnico = this.SelectedItem().NombreMix;
+            if (MessageBox.Show("¿Está seguro que desea eliminar el técnico: \"" + nombreMixTecnico + "\"?", "Eliminar técnico Id: " + id, MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                await TecnicoApiClient.DeleteAsync(id);
+            }
             this.GetAllAndLoad();
         }
 
