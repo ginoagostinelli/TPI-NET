@@ -44,7 +44,7 @@ namespace WindowsForms
             {
                 this.material.Cantidad = (int)this.cantidadUpDown.Value;
                 this.material.Tipo = (int) this.tipoComboBox.SelectedValue;
-                
+
                 /*this.Tecnico.NombreMix = this.apellidoTextBox.Text + ", " + this.nombreTextBox.Text;
                 this.Tecnico.Telefono = this.telefonoTextBox.Text;
                 this.Tecnico.Email = this.emailTextBox.Text;
@@ -62,7 +62,7 @@ namespace WindowsForms
                 {
                     await TecnicoApiClient.AddAsync(this.Tecnico);
                 }*/
-
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
         }

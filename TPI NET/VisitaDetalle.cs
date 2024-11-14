@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Pipes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -117,17 +118,7 @@ namespace WindowsForms
                                                       Cantidad = m.Cantidad,
 
                                                   }).ToList();
-            if (this.materialesGridView.Rows.Count > 0)
-            {
-                //this.tecnicosDataGridView.Rows[0].Selected = true;
-                this.agregarMaterialButton.Enabled = true;
-                this.eliminarMaterialButton.Enabled = true;
-            }
-            else
-            {
-                this.agregarMaterialButton.Enabled = true;
-                this.eliminarMaterialButton.Enabled = false;
-            }
+            actualizaBotones();
         }
 
         private bool ValidateVisita()
@@ -155,14 +146,24 @@ namespace WindowsForms
         private void agregarMaterialbutton_Click(object sender, EventArgs e)
         {
             VisitaMaterialDetalle visitaMaterialDetalle = new VisitaMaterialDetalle();
-
-            visitaMaterialDetalle.ShowDialog();
-            //CODIGO PARA AGREGAR EL MATERIAL A LA LISTA DE MATERIALES
-            materiales.Add(visitaMaterialDetalle.Material);
+            DialogResult resultado = visitaMaterialDetalle.ShowDialog();
+            if ( resultado == DialogResult.OK)
+            {
+                materiales.Add(visitaMaterialDetalle.Material);
+            }
             //this.GetAllAndLoad();
             this.materialesGridView.DataSource = null;
-            this.materialesGridView.DataSource = materiales;
+            this.materialesGridView.DataSource = (from m in materiales
+                                                  join t in this.tipos
+                                                  on m.Tipo equals t.Id
+                                                  select new
+                                                  {
+                                                      Id = m.Id,
+                                                      Descripcion = t.Descripcion,
+                                                      Cantidad = m.Cantidad,
 
+                                                  }).ToList();
+            actualizaBotones();
         }
 
         private void VisitaDetalle_Load(object sender, EventArgs e)
@@ -186,7 +187,22 @@ namespace WindowsForms
                                                       Cantidad = m.Cantidad,
 
                                                   }).ToList();
+            actualizaBotones();
 
+        }
+
+        private void actualizaBotones()
+        {
+            if (this.materialesGridView.Rows.Count > 0)
+            {
+                this.agregarMaterialButton.Enabled = true;
+                this.eliminarMaterialButton.Enabled = true;
+            }
+            else
+            {
+                this.agregarMaterialButton.Enabled = true;
+                this.eliminarMaterialButton.Enabled = false;
+            }
         }
     }
 }
