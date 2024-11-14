@@ -1,13 +1,4 @@
 ﻿using Dominio.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using TPI_NET.APIs;
 
 namespace WindowsForms
@@ -26,7 +17,6 @@ namespace WindowsForms
             }
         }
 
-        //Probablemente un Enum seria mas apropiado        
         public bool EditMode { get; set; } = false;
 
         public ClienteDetalle()
@@ -46,9 +36,6 @@ namespace WindowsForms
                 this.Cliente.Direccion = direccionTextBox.Text;
                 this.Cliente.Telefono = telefonoTextBox.Text;
 
-                //El Detalle se esta llevando la responsabilidad de llamar al servicio
-                //pero tal vez deberia ser solo una vista y que esta responsabilidad quede
-                //en la Lista o tal vez en un Presenter o Controler
 
                 if (this.EditMode)
                 {
@@ -86,6 +73,7 @@ namespace WindowsForms
             isValid &= textboxIsValid(apellidoTextBox, "El Apellido es Requerido");
             isValid &= textboxIsValid(direccionTextBox, "La Direccion es Requerida");
             isValid &= textboxIsValid(telefonoTextBox, "El Teléfono es Requerido");
+            
 
             return isValid;
         }

@@ -1,9 +1,4 @@
 ﻿using Dominio.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Dominio.Services
 {
@@ -11,6 +6,8 @@ namespace Dominio.Services
     {
         public void Add(Material material)
         {
+            ValidateMaterial(material);
+
             using var context = new EmpresaContext();
 
             context.Materiales.Add(material);
@@ -103,6 +100,9 @@ namespace Dominio.Services
 
         public void Update(Material material)
         {
+
+            ValidateMaterial(material);
+
             using var context = new EmpresaContext();
 
             Material? materialToUpdate = context.Materiales.Find(material.Id);
@@ -113,6 +113,14 @@ namespace Dominio.Services
                 materialToUpdate.Tipo = material.Tipo;
                 materialToUpdate.Visita = material.Visita;
                 context.SaveChanges();
+            }
+        }
+
+        private void ValidateMaterial(Material material)
+        {
+            if (material.Cantidad <= 0)
+            {
+                throw new ArgumentException("La cantidad debe ser mayor a cero.");
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Dominio;
 using Dominio.Model;
+using System.Text.RegularExpressions;
 
 namespace Domain.Services
 {
@@ -55,6 +56,34 @@ namespace Domain.Services
                 tecnicoToUpdate.Rol = tecnico.Rol;
                 tecnicoToUpdate.Telefono = tecnico.Telefono;
                 context.SaveChanges();
+            }
+        }
+
+        private void ValidarTecnico(Tecnico tecnico)
+        {
+            if (tecnico.Password.Length < 6)
+            {
+                throw new ArgumentException("La contraseña debe tener al menos 6 caracteres.");
+            }
+
+            if (!Regex.IsMatch(tecnico.Password, @"[A-Z]")) // Al menos una letra mayúscula
+            {
+                throw new ArgumentException("La contraseña debe incluir al menos una letra mayúscula.");
+            }
+
+            if (!Regex.IsMatch(tecnico.Password, @"[a-z]")) // Al menos una letra minúscula
+            {
+                throw new ArgumentException("La contraseña debe incluir al menos una letra minúscula.");
+            }
+
+            if (!Regex.IsMatch(tecnico.Password, @"\d")) // Al menos un número
+            {
+                throw new ArgumentException("La contraseña debe incluir al menos un número.");
+            }
+
+            if (string.IsNullOrEmpty(tecnico.Email) || !Regex.IsMatch(tecnico.Email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                throw new ArgumentException("El email proporcionado no tiene un formato válido.");
             }
         }
     }

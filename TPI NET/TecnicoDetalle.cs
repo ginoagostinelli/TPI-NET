@@ -1,13 +1,5 @@
 ﻿using Dominio.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Text.RegularExpressions;
 using TPI_NET.APIs;
 
 namespace WindowsForms
@@ -26,7 +18,6 @@ namespace WindowsForms
             }
         }
 
-        //Probablemente un Enum seria mas apropiado        
         public bool EditMode { get; set; } = false;
 
         public TecnicoDetalle()
@@ -106,6 +97,26 @@ namespace WindowsForms
             isValid &= controlIsValid(emailTextBox, "El e-Mail es Requerido");
             isValid &= controlIsValid(contraTextBox, "La contraseña es Requerida");
             isValid &= controlIsValid(rolComboBox, "El Rol es Requerido");
+
+            string password = contraTextBox.Text;
+
+            if (password.Length < 6 || !Regex.IsMatch(password, @"[A-Z]") || !Regex.IsMatch(password, @"[a-z]") || !Regex.IsMatch(password, @"\d"))
+            {
+                errorProvider.SetError(contraTextBox, "La contraseña debe incluir: \n" +
+                    "- Al menos 6 caracteres.\n" +
+                    "- Al menos una letra mayúscula.\n" +
+                    "- Al menos una letra minúscula.\n" +
+                    "- Al menos un número.");
+                isValid &= false;
+            }
+
+            string email = emailTextBox.Text;
+
+            if (string.IsNullOrEmpty(email) || !Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                errorProvider.SetError(emailTextBox, "El email proporcionado no tiene un formato válido.");
+                isValid &= false;
+            }
 
 
             return isValid;
