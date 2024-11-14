@@ -1,60 +1,108 @@
-﻿using Dominio.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
+using Dominio.Model;
+
 
 namespace Dominio.Services
 {
     public class TipoSolicitudService
     {
+        private readonly string _connectionString = @"Server=(localdb)\MSSQLLocalDB;Initial Catalog=ClienteDb";
+
         public void Add(TipoSolicitud tipoSolicitud)
         {
-            using var context = new EmpresaContext();
+            using SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
 
-            context.TiposSolicitudes.Add(tipoSolicitud);
-            context.SaveChanges();
+            string query = "INSERT INTO TiposSolicitudes (Nombre, Descripcion) VALUES (@Nombre, @Descripcion)";
+
+            using SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Nombre", tipoSolicitud.Nombre);
+            command.Parameters.AddWithValue("@Descripcion", tipoSolicitud.Descripcion);
+
+            command.ExecuteNonQuery();
         }
 
         public void Delete(int id)
         {
-            using var context = new EmpresaContext();
+            using SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
 
-            TipoSolicitud? tipoSolicitudToDelete = context.TiposSolicitudes.Find(id);
+            string query = "DELETE FROM TiposSolicitudes WHERE Id = @Id";
 
-            if (tipoSolicitudToDelete != null)
-            {
-                context.TiposSolicitudes.Remove(tipoSolicitudToDelete);
-                context.SaveChanges();
-            }
+            using SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Id", id);
+
+            command.ExecuteNonQuery();
         }
 
         public TipoSolicitud? Get(int id)
         {
-            using var context = new EmpresaContext();
+            using SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
 
-            return context.TiposSolicitudes.Find(id);
+            string query = "SELECT Id, Nombre, Descripcion FROM TiposSolicitudes WHERE Id = @Id";
+
+            using SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Id", id);
+
+            using SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.Read())
+            {
+                return new TipoSolicitud
+                {
+                    Id = reader.GetInt32(0),
+                    Nombre = reader.GetString(1),
+                    Descripcion = reader.GetString(2)
+                };
+            }
+
+            return null;
         }
 
         public IEnumerable<TipoSolicitud> GetAll()
         {
-            using var context = new EmpresaContext();
+            List<TipoSolicitud> tiposSolicitudes = new List<TipoSolicitud>();
 
-            return context.TiposSolicitudes.ToList();
+            using SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            string query = "SELECT Id, Nombre, Descripcion FROM TiposSolicitudes";
+
+            using SqlCommand command = new SqlCommand(query, connection);
+            using SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                TipoSolicitud tipoSolicitud = new TipoSolicitud
+                {
+                    Id = reader.GetInt32(0),
+                    Nombre = reader.GetString(1),
+                    Descripcion = reader.GetString(2)
+                };
+
+                tiposSolicitudes.Add(tipoSolicitud);
+            }
+
+            return tiposSolicitudes;
         }
 
         public void Update(TipoSolicitud tipoSolicitud)
         {
-            using var context = new EmpresaContext();
+            using SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
 
-            TipoSolicitud? tipoSolicitudToUpdate = context.TiposSolicitudes.Find(tipoSolicitud.Id);
+            string query = "UPDATE TiposSolicitudes SET Nombre = @Nombre, Descripcion = @Descripcion WHERE Id = @Id";
 
-            if (tipoSolicitudToUpdate != null)
-            {
-                tipoSolicitudToUpdate.Descripcion = tipoSolicitud.Descripcion;
-                context.SaveChanges();
-            }
+            using SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Id", tipoSolicitud.Id);
+            command.Parameters.AddWithValue("@Nombre", tipoSolicitud.Nombre);
+            command.Parameters.AddWithValue("@Descripcion", tipoSolicitud.Descripcion);
+
+            command.ExecuteNonQuery();
         }
     }
 }
