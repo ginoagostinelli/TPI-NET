@@ -53,5 +53,11 @@ namespace TPI_NET
             TipoMaterialLista tipoMaterialLista = new TipoMaterialLista();
             tipoMaterialLista.Show();
         }
+
+        private void MenuPrincipal_Load(object sender, EventArgs e)
+        {
+            MenuLogin login = new MenuLogin();
+            login.ShowDialog();
+        }
     }
 }

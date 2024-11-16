@@ -34,6 +34,13 @@ namespace Domain.Services
             return context.Tecnicos.Find(id);
         }
 
+        public Tecnico? GetMail(string email)
+        {
+            using var context = new EmpresaContext();
+
+            return context.Tecnicos.FirstOrDefault(t => t.Email == email);
+        }
+
         public IEnumerable<Tecnico> GetAll()
         {
             using var context = new EmpresaContext();

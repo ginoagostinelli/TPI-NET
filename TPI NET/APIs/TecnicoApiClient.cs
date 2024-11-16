@@ -33,6 +33,16 @@ namespace TPI_NET.APIs
             return tecnico;
         }
 
+        public static async Task<Tecnico> GetMailAsync(Tecnico tecnico)
+        {
+            HttpResponseMessage response = await client.PostAsJsonAsync("login", tecnico);
+            if (response.IsSuccessStatusCode)
+            {
+                tecnico = await response.Content.ReadAsAsync<Tecnico>();
+            }
+            return tecnico;
+        }
+
         public static async Task<IEnumerable<Tecnico>> GetAllAsync()
         {
             IEnumerable<Tecnico> tecnicos = null;

@@ -369,5 +369,22 @@ app.MapDelete("/materiales/{id}", (int id) =>
 .WithName("DeleteMateriales")
 .WithOpenApi();
 
+app.MapPost("/login", (Tecnico tecnico) =>
+{
+    TecnicoService tecnicoService = new TecnicoService();
+    Tecnico? tecnicoObtenido = tecnicoService.GetMail(tecnico.Email);
+
+    if(tecnicoObtenido != null)
+    {
+        if(tecnicoObtenido.Password == tecnico.Password)
+        {
+            return tecnicoObtenido;
+        }
+    }
+
+    return null;
+})
+.WithName("LoginTecnico")
+.WithOpenApi();
 
 app.Run();

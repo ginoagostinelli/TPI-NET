@@ -116,6 +116,7 @@
             Controls.Add(aceptarButton);
             Name = "MenuPrincipal";
             Text = "Menu Principal";
+            Load += MenuPrincipal_Load;
             ResumeLayout(false);
         }
 
