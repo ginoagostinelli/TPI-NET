@@ -378,6 +378,7 @@ app.MapPost("/login", (Tecnico tecnico) =>
     {
         if(tecnicoObtenido.Password == tecnico.Password)
         {
+            tecnicoObtenido.Password = "";
             return tecnicoObtenido;
         }
     }
@@ -385,6 +386,15 @@ app.MapPost("/login", (Tecnico tecnico) =>
     return null;
 })
 .WithName("LoginTecnico")
+.WithOpenApi();
+
+app.MapGet("/roles/{rol}", (string rol) =>
+{
+    RolService rolService = new RolService();
+
+    return rolService.GetDescripcion(rol);
+})
+.WithName("GetRol")
 .WithOpenApi();
 
 app.Run();

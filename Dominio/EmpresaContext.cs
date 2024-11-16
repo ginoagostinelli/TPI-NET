@@ -12,6 +12,7 @@ namespace Dominio
         internal DbSet<Material> Materiales { get; set; }
         internal DbSet<TipoSolicitud> TiposSolicitudes { get; set; }
         internal DbSet<TipoMaterial> TiposMateriales { get; set; }
+        internal DbSet<Rol> Roles { get; set; }
 
         internal EmpresaContext()
         {

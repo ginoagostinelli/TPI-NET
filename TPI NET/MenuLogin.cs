@@ -6,7 +6,13 @@ namespace TPI_NET
 {
     public partial class MenuLogin : Form
     {
-        Tecnico sesion = null;
+        Rol sesion = null;
+
+        public Rol Sesion
+        {
+            get { return sesion; }
+            
+        }
         public MenuLogin()
         {
             InitializeComponent();
@@ -15,21 +21,21 @@ namespace TPI_NET
         private async void ingresarButton_Click(object sender, EventArgs e)
         {
             this.ingresarButton.Enabled = false;
-            this.sesion = new Tecnico();
-            this.sesion.Email = this.emailTextBox.Text;
-            this.sesion.Password = this.contraTextBox.Text;
+            Tecnico tecnicoLogin = new Tecnico();
+            tecnicoLogin.Email = this.emailTextBox.Text;
+            tecnicoLogin.Password = this.contraTextBox.Text;
 
-            Tecnico tecnico = await TecnicoApiClient.GetMailAsync(this.sesion);
-            if (tecnico != null)
+            Tecnico tecnicoObtenido = await TecnicoApiClient.GetMailAsync(tecnicoLogin);
+            if (tecnicoObtenido != null)
             {
-                sesion = tecnico;
+                sesion = await RolApiClient.GetDescripcionAsync(tecnicoObtenido.Rol);
                 invalidosLabel.Visible = false;
-                MessageBox.Show("Rol obtenido: \"" + tecnico.Rol + "\"", "Tecnico obtenido", MessageBoxButtons.YesNo);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
 
             }
             else
             {
-                sesion = null;
                 invalidosLabel.Visible = true;
                 this.ingresarButton.Enabled = true;
             }
@@ -37,6 +43,8 @@ namespace TPI_NET
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
+
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 

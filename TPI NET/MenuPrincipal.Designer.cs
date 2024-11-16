@@ -28,92 +28,98 @@
         /// </summary>
         private void InitializeComponent()
         {
-            aceptarButton = new Button();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
+            clientesButton = new Button();
+            solicitudesButton = new Button();
+            tipoSolicitudesButton = new Button();
+            tecnicosButton = new Button();
+            visitasButton = new Button();
+            tipoMaterialesButton = new Button();
             SuspendLayout();
             // 
-            // aceptarButton
+            // clientesButton
             // 
-            aceptarButton.Location = new Point(83, 33);
-            aceptarButton.Margin = new Padding(2, 1, 2, 1);
-            aceptarButton.Name = "aceptarButton";
-            aceptarButton.Size = new Size(135, 43);
-            aceptarButton.TabIndex = 3;
-            aceptarButton.Text = "Clientes";
-            aceptarButton.UseVisualStyleBackColor = true;
-            aceptarButton.Click += clientesButton_Click;
+            clientesButton.Enabled = false;
+            clientesButton.Location = new Point(83, 33);
+            clientesButton.Margin = new Padding(2, 1, 2, 1);
+            clientesButton.Name = "clientesButton";
+            clientesButton.Size = new Size(135, 43);
+            clientesButton.TabIndex = 3;
+            clientesButton.Text = "Clientes";
+            clientesButton.UseVisualStyleBackColor = true;
+            clientesButton.Click += clientesButton_Click;
             // 
-            // button1
+            // solicitudesButton
             // 
-            button1.Location = new Point(372, 33);
-            button1.Margin = new Padding(2, 1, 2, 1);
-            button1.Name = "button1";
-            button1.Size = new Size(135, 43);
-            button1.TabIndex = 4;
-            button1.Text = "Solicitudes";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += solicitudesButton_Click;
+            solicitudesButton.Enabled = false;
+            solicitudesButton.Location = new Point(372, 33);
+            solicitudesButton.Margin = new Padding(2, 1, 2, 1);
+            solicitudesButton.Name = "solicitudesButton";
+            solicitudesButton.Size = new Size(135, 43);
+            solicitudesButton.TabIndex = 4;
+            solicitudesButton.Text = "Solicitudes";
+            solicitudesButton.UseVisualStyleBackColor = true;
+            solicitudesButton.Click += solicitudesButton_Click;
             // 
-            // button2
+            // tipoSolicitudesButton
             // 
-            button2.Location = new Point(372, 122);
-            button2.Margin = new Padding(2, 1, 2, 1);
-            button2.Name = "button2";
-            button2.Size = new Size(135, 43);
-            button2.TabIndex = 5;
-            button2.Text = "Tipo Solicitudes";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += tipoSolicitudesButton_Click;
+            tipoSolicitudesButton.Enabled = false;
+            tipoSolicitudesButton.Location = new Point(372, 122);
+            tipoSolicitudesButton.Margin = new Padding(2, 1, 2, 1);
+            tipoSolicitudesButton.Name = "tipoSolicitudesButton";
+            tipoSolicitudesButton.Size = new Size(135, 43);
+            tipoSolicitudesButton.TabIndex = 5;
+            tipoSolicitudesButton.Text = "Tipo Solicitudes";
+            tipoSolicitudesButton.UseVisualStyleBackColor = true;
+            tipoSolicitudesButton.Click += tipoSolicitudesButton_Click;
             // 
-            // button3
+            // tecnicosButton
             // 
-            button3.Location = new Point(83, 122);
-            button3.Margin = new Padding(2, 1, 2, 1);
-            button3.Name = "button3";
-            button3.Size = new Size(135, 43);
-            button3.TabIndex = 6;
-            button3.Text = "Tecnicos";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += tecnicosButton_Click;
+            tecnicosButton.Enabled = false;
+            tecnicosButton.Location = new Point(83, 122);
+            tecnicosButton.Margin = new Padding(2, 1, 2, 1);
+            tecnicosButton.Name = "tecnicosButton";
+            tecnicosButton.Size = new Size(135, 43);
+            tecnicosButton.TabIndex = 6;
+            tecnicosButton.Text = "Tecnicos";
+            tecnicosButton.UseVisualStyleBackColor = true;
+            tecnicosButton.Click += tecnicosButton_Click;
             // 
-            // button4
+            // visitasButton
             // 
-            button4.Location = new Point(641, 33);
-            button4.Margin = new Padding(2, 1, 2, 1);
-            button4.Name = "button4";
-            button4.Size = new Size(135, 43);
-            button4.TabIndex = 7;
-            button4.Text = "Visitas";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += visitasButton_Click;
+            visitasButton.Enabled = false;
+            visitasButton.Location = new Point(641, 33);
+            visitasButton.Margin = new Padding(2, 1, 2, 1);
+            visitasButton.Name = "visitasButton";
+            visitasButton.Size = new Size(135, 43);
+            visitasButton.TabIndex = 7;
+            visitasButton.Text = "Visitas";
+            visitasButton.UseVisualStyleBackColor = true;
+            visitasButton.Click += visitasButton_Click;
             // 
-            // button5
+            // tipoMaterialesButton
             // 
-            button5.Location = new Point(641, 122);
-            button5.Margin = new Padding(2, 1, 2, 1);
-            button5.Name = "button5";
-            button5.Size = new Size(135, 43);
-            button5.TabIndex = 8;
-            button5.Text = "Tipo Materiales";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += materialesButton_Click;
+            tipoMaterialesButton.Enabled = false;
+            tipoMaterialesButton.Location = new Point(641, 122);
+            tipoMaterialesButton.Margin = new Padding(2, 1, 2, 1);
+            tipoMaterialesButton.Name = "tipoMaterialesButton";
+            tipoMaterialesButton.Size = new Size(135, 43);
+            tipoMaterialesButton.TabIndex = 8;
+            tipoMaterialesButton.Text = "Tipo Materiales";
+            tipoMaterialesButton.UseVisualStyleBackColor = true;
+            tipoMaterialesButton.Click += materialesButton_Click;
             // 
             // MenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(878, 233);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(aceptarButton);
+            ClientSize = new Size(868, 233);
+            Controls.Add(tipoMaterialesButton);
+            Controls.Add(visitasButton);
+            Controls.Add(tecnicosButton);
+            Controls.Add(tipoSolicitudesButton);
+            Controls.Add(solicitudesButton);
+            Controls.Add(clientesButton);
             Name = "MenuPrincipal";
             Text = "Menu Principal";
             Load += MenuPrincipal_Load;
@@ -122,11 +128,11 @@
 
         #endregion
 
-        private Button aceptarButton;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Button button5;
+        private Button clientesButton;
+        private Button solicitudesButton;
+        private Button tipoSolicitudesButton;
+        private Button tecnicosButton;
+        private Button visitasButton;
+        private Button tipoMaterialesButton;
     }
 }
