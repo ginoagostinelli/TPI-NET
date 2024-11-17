@@ -28,7 +28,7 @@ namespace TPI_NET
             Tecnico tecnicoObtenido = await TecnicoApiClient.GetMailAsync(tecnicoLogin);
             if (tecnicoObtenido != null)
             {
-                sesion = await RolApiClient.GetDescripcionAsync(tecnicoObtenido.Rol);
+                sesion = await RolApiClient.GetAsync(tecnicoObtenido.Rol);
                 invalidosLabel.Visible = false;
                 this.DialogResult = DialogResult.OK;
                 this.Close();

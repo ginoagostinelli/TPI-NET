@@ -22,6 +22,7 @@ namespace TPI_NET
 
         private void ClienteLista_Load(object sender, EventArgs e)
         {
+            EjecutarRol();
             this.GetAllAndLoad();
         }
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -80,8 +81,7 @@ namespace TPI_NET
             if (this.dgvLista.Rows.Count > 0)
             {
                 this.dgvLista.Rows[0].Selected = true;
-                this.btnEliminar.Enabled = true;
-                this.btnModificar.Enabled = true;
+                EjecutarRol();
             }
             else
             {
@@ -97,6 +97,20 @@ namespace TPI_NET
             cliente = (Cliente)dgvLista.SelectedRows[0].DataBoundItem;
 
             return cliente;
+        }
+
+        private void EjecutarRol()
+        {
+            if (this.rolSesion.ClientesAgregar) this.btnAgregar.Enabled = true;
+            else this.btnAgregar.Enabled = false;
+
+            if (this.rolSesion.ClientesModificar) this.btnModificar.Enabled = true;
+            else this.btnModificar.Enabled = false;
+
+            if (this.rolSesion.ClientesEliminar) this.btnEliminar.Enabled = true;
+            else this.btnEliminar.Enabled = false;
+
+            
         }
     }
 }

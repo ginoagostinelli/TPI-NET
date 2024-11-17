@@ -7,7 +7,7 @@ namespace WindowsForms
     public partial class TecnicoDetalle : Form
     {
         private Tecnico tecnico;
-        private List<string> roles = new List<string> { "Tecnico", "Supervisor" };
+        private List<int> roles = new List<int> { 1, 2 };
         private Rol rolSesion = new Rol();
         public Rol RolSesion
         {
@@ -48,7 +48,7 @@ namespace WindowsForms
                 this.Tecnico.Telefono = this.telefonoTextBox.Text;
                 this.Tecnico.Email = this.emailTextBox.Text;
                 this.Tecnico.Password = this.contraTextBox.Text;
-                this.Tecnico.Rol = (string)this.rolComboBox.SelectedValue;
+                this.Tecnico.Rol = (int)this.rolComboBox.SelectedValue;
                 //El Detalle se esta llevando la responsabilidad de llamar al servicio
                 //pero tal vez deberia ser solo una vista y que esta responsabilidad quede
                 //en la Lista o tal vez en un Presenter o Controler

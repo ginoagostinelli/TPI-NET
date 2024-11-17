@@ -21,6 +21,7 @@ namespace WindowsForms
 
         private void Tecnicos_Load(object sender, EventArgs e)
         {
+            EjecutarRol();
             this.GetAllAndLoad();
         }
 
@@ -81,8 +82,7 @@ namespace WindowsForms
             if (this.tecnicosDataGridView.Rows.Count > 0)
             {
                 this.tecnicosDataGridView.Rows[0].Selected = true;
-                this.eliminarButton.Enabled = true;
-                this.modificarButton.Enabled = true;
+                EjecutarRol();
             }
             else
             {
@@ -100,6 +100,19 @@ namespace WindowsForms
             return tecnico;
         }
 
+        private void EjecutarRol()
+        {
+            if (this.rolSesion.TecnicosAgregar) this.agregarButton.Enabled = true;
+            else this.agregarButton.Enabled = false;
+
+            if (this.rolSesion.TecnicosModificar) this.modificarButton.Enabled = true;
+            else this.modificarButton.Enabled = false;
+
+            if (this.rolSesion.TecnicosEliminar) this.eliminarButton.Enabled = true;
+            else this.eliminarButton.Enabled = false;
+
+
+        }
 
     }
 }

@@ -102,6 +102,18 @@ namespace WindowsForms
             return tipoMaterial;
         }
 
+        private void EjecutarRol()
+        {
+            if (this.rolSesion.TiposMaterialesAgregar) this.agregarButton.Enabled = true;
+            else this.agregarButton.Enabled = false;
 
+            if (this.rolSesion.TiposMaterialesModificar) this.modificarButton.Enabled = true;
+            else this.modificarButton.Enabled = false;
+
+            if (this.rolSesion.TiposMaterialesEliminar) this.eliminarButton.Enabled = true;
+            else this.eliminarButton.Enabled = false;
+
+
+        }
     }
 }

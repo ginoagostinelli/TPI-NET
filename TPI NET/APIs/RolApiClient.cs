@@ -22,7 +22,7 @@ namespace TPI_NET.APIs
         }
 
 
-        public static async Task<Rol> GetDescripcionAsync(string rol)
+        public static async Task<Rol> GetAsync(int rol)
         {
             Rol rolObtenido = null;
             HttpResponseMessage response = await client.GetAsync("roles/" + rol);

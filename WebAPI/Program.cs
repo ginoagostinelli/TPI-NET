@@ -388,11 +388,11 @@ app.MapPost("/login", (Tecnico tecnico) =>
 .WithName("LoginTecnico")
 .WithOpenApi();
 
-app.MapGet("/roles/{rol}", (string rol) =>
+app.MapGet("/roles/{rol}", (int rol) =>
 {
     RolService rolService = new RolService();
 
-    return rolService.GetDescripcion(rol);
+    return rolService.Get(rol);
 })
 .WithName("GetRol")
 .WithOpenApi();

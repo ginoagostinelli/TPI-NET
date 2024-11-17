@@ -126,21 +126,27 @@ CREATE TABLE [dbo].[Roles](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Descripcion] [nvarchar](max) NOT NULL,
 	[ClientesVer] [bit] NOT NULL,
+	[ClientesAgregar] [bit] NOT NULL,
 	[ClientesModificar] [bit] NOT NULL,
 	[ClientesEliminar] [bit] NOT NULL,
 	[SolicitudesVer] [bit] NOT NULL,
+	[SolicitudesAgregar] [bit] NOT NULL,
 	[SolicitudesModificar] [bit] NOT NULL,
 	[SolicitudesEliminar] [bit] NOT NULL,
 	[VisitasVer] [bit] NOT NULL,
+	[VisitasAgregar] [bit] NOT NULL,
 	[VisitasModificar] [bit] NOT NULL,
 	[VisitasEliminar] [bit] NOT NULL,
 	[TecnicosVer] [bit] NOT NULL,
+	[TecnicosAgregar] [bit] NOT NULL,
 	[TecnicosModificar] [bit] NOT NULL,
 	[TecnicosEliminar] [bit] NOT NULL,
 	[TiposMaterialesVer] [bit] NOT NULL,
+	[TiposMaterialesAgregar] [bit] NOT NULL,
 	[TiposMaterialesModificar] [bit] NOT NULL,
 	[TiposMaterialesEliminar] [bit] NOT NULL,
 	[TiposSolicitudesVer] [bit] NOT NULL,
+	[TiposSolicitudesAgregar] [bit] NOT NULL,
 	[TiposSolicitudesModificar] [bit] NOT NULL,
 	[TiposSolicitudesEliminar] [bit] NOT NULL,
  CONSTRAINT [PK_Roles] PRIMARY KEY CLUSTERED 
@@ -157,13 +163,122 @@ CREATE TABLE [dbo].[Tecnicos](
 	[NombreMix] [nvarchar](max) NOT NULL,
 	[Email] [nvarchar](max) NOT NULL,
 	[Password] [nvarchar](max) NOT NULL,
-	[Rol] [nvarchar](max) NOT NULL,
+	[Rol] [int] NOT NULL,
 	[Telefono] [nvarchar](max) NOT NULL,
  CONSTRAINT [PK_Tecnicos] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+INSERT INTO [dbo].[Roles]
+           ([Descripcion]
+           ,[ClientesVer]
+		   ,[ClientesAgregar]
+           ,[ClientesModificar]
+           ,[ClientesEliminar]
+           ,[SolicitudesVer]
+		   ,[SolicitudesAgregar]
+           ,[SolicitudesModificar]
+           ,[SolicitudesEliminar]
+           ,[VisitasVer]
+		   ,[VisitasAgregar]
+           ,[VisitasModificar]
+           ,[VisitasEliminar]
+           ,[TecnicosVer]
+		   ,[TecnicosAgregar]
+           ,[TecnicosModificar]
+           ,[TecnicosEliminar]
+           ,[TiposMaterialesVer]
+		   ,[TiposMaterialesAgregar]
+           ,[TiposMaterialesModificar]
+           ,[TiposMaterialesEliminar]
+           ,[TiposSolicitudesVer]
+		   ,[TiposSolicitudesAgregar]
+           ,[TiposSolicitudesModificar]
+           ,[TiposSolicitudesEliminar])
+     VALUES
+           ('Supervisor'
+           ,1
+           ,1
+           ,1
+           ,1
+           ,1
+           ,1
+           ,1
+           ,1
+           ,1
+           ,1
+           ,1
+           ,1
+           ,1
+           ,1
+           ,1
+           ,1
+           ,1
+		   ,1
+           ,1
+		   ,1
+           ,1
+           ,1
+           ,1
+           ,1)
+GO
+
+
+INSERT INTO [dbo].[Roles]
+           ([Descripcion]
+           ,[ClientesVer]
+		   ,[ClientesAgregar]
+           ,[ClientesModificar]
+           ,[ClientesEliminar]
+           ,[SolicitudesVer]
+		   ,[SolicitudesAgregar]
+           ,[SolicitudesModificar]
+           ,[SolicitudesEliminar]
+           ,[VisitasVer]
+		   ,[VisitasAgregar]
+           ,[VisitasModificar]
+           ,[VisitasEliminar]
+           ,[TecnicosVer]
+		   ,[TecnicosAgregar]
+           ,[TecnicosModificar]
+           ,[TecnicosEliminar]
+           ,[TiposMaterialesVer]
+		   ,[TiposMaterialesAgregar]
+           ,[TiposMaterialesModificar]
+           ,[TiposMaterialesEliminar]
+           ,[TiposSolicitudesVer]
+		   ,[TiposSolicitudesAgregar]
+           ,[TiposSolicitudesModificar]
+           ,[TiposSolicitudesEliminar])
+     VALUES
+           ('Tecnico'
+           ,1
+           ,0
+           ,0
+		   ,0
+           ,1
+           ,0
+           ,0
+		   ,0
+           ,1
+           ,1
+		   ,1
+           ,1
+           ,1
+           ,0
+           ,0
+		   ,0
+           ,1
+           ,0
+           ,0
+		   ,0
+           ,1
+           ,0
+		   ,0
+           ,0)
 GO
 
 INSERT INTO [dbo].[Tecnicos]
@@ -180,91 +295,8 @@ INSERT INTO [dbo].[Tecnicos]
            ,'Supervisor'
            ,'supervisor@supervisor.sup'
            ,'Supervisor1'
-           ,'Supervisor'
+           ,1
            ,'55555555555555')
 GO
 
-INSERT INTO [dbo].[Roles]
-           ([Descripcion]
-           ,[ClientesVer]
-           ,[ClientesModificar]
-           ,[ClientesEliminar]
-           ,[SolicitudesVer]
-           ,[SolicitudesModificar]
-           ,[SolicitudesEliminar]
-           ,[VisitasVer]
-           ,[VisitasModificar]
-           ,[VisitasEliminar]
-           ,[TecnicosVer]
-           ,[TecnicosModificar]
-           ,[TecnicosEliminar]
-           ,[TiposMaterialesVer]
-           ,[TiposMaterialesModificar]
-           ,[TiposMaterialesEliminar]
-           ,[TiposSolicitudesVer]
-           ,[TiposSolicitudesModificar]
-           ,[TiposSolicitudesEliminar])
-     VALUES
-           ('Supervisor'
-           ,1
-           ,1
-           ,1
-           ,1
-           ,1
-           ,1
-           ,1
-           ,1
-           ,1
-           ,1
-           ,1
-           ,1
-           ,1
-           ,1
-           ,1
-           ,1
-           ,1
-           ,1)
-GO
 
-
-INSERT INTO [dbo].[Roles]
-           ([Descripcion]
-           ,[ClientesVer]
-           ,[ClientesModificar]
-           ,[ClientesEliminar]
-           ,[SolicitudesVer]
-           ,[SolicitudesModificar]
-           ,[SolicitudesEliminar]
-           ,[VisitasVer]
-           ,[VisitasModificar]
-           ,[VisitasEliminar]
-           ,[TecnicosVer]
-           ,[TecnicosModificar]
-           ,[TecnicosEliminar]
-           ,[TiposMaterialesVer]
-           ,[TiposMaterialesModificar]
-           ,[TiposMaterialesEliminar]
-           ,[TiposSolicitudesVer]
-           ,[TiposSolicitudesModificar]
-           ,[TiposSolicitudesEliminar])
-     VALUES
-           ('Tecnico'
-           ,1
-           ,0
-           ,0
-           ,1
-           ,0
-           ,0
-           ,1
-           ,1
-           ,1
-           ,1
-           ,0
-           ,0
-           ,1
-           ,0
-           ,0
-           ,1
-           ,0
-           ,0)
-GO
