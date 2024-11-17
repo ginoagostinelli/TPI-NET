@@ -5,6 +5,15 @@ namespace WindowsForms
 {
     public partial class TipoMaterialLista : Form
     {
+        private Rol rolSesion = new Rol();
+        public Rol RolSesion
+        {
+            get { return rolSesion; }
+            set
+            {
+                rolSesion = value;
+            }
+        }
         public TipoMaterialLista()
         {
             InitializeComponent();

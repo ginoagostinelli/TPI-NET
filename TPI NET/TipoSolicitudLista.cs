@@ -6,6 +6,15 @@ namespace TPI_NET
 {
     public partial class TipoSolicitudLista : Form
     {
+        private Rol rolSesion = new Rol();
+        public Rol RolSesion
+        {
+            get { return rolSesion; }
+            set
+            {
+                rolSesion = value;
+            }
+        }
         public TipoSolicitudLista()
         {
             InitializeComponent();

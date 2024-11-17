@@ -5,6 +5,15 @@ namespace WindowsForms
 {
     public partial class SolicitudLista : Form
     {
+        private Rol rolSesion = new Rol();
+        public Rol RolSesion
+        {
+            get { return rolSesion; }
+            set
+            {
+                rolSesion = value;
+            }
+        }
         public SolicitudLista()
         {
             InitializeComponent();

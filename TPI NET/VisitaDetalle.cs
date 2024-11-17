@@ -18,7 +18,15 @@ namespace WindowsForms
         private Visita visita;
         private List<Material>? materiales = new List<Material>();
         private IEnumerable<TipoMaterial> tipos;
-
+        private Rol rolSesion = new Rol();
+        public Rol RolSesion
+        {
+            get { return rolSesion; }
+            set
+            {
+                rolSesion = value;
+            }
+        }
         public Visita Visita
         {
             get { return visita; }

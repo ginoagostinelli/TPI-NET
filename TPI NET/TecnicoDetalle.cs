@@ -7,7 +7,16 @@ namespace WindowsForms
     public partial class TecnicoDetalle : Form
     {
         private Tecnico tecnico;
-        List<string> roles = new List<string> { "Tecnico", "Supervisor" };
+        private List<string> roles = new List<string> { "Tecnico", "Supervisor" };
+        private Rol rolSesion = new Rol();
+        public Rol RolSesion
+        {
+            get { return rolSesion; }
+            set
+            {
+                rolSesion = value;
+            }
+        }
         public Tecnico Tecnico
         {
             get { return tecnico; }

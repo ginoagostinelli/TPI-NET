@@ -15,7 +15,15 @@ namespace WindowsForms
     public partial class TipoMaterialDetalle : Form
     {
         private TipoMaterial tipoMaterial;
-        
+        private Rol rolSesion = new Rol();
+        public Rol RolSesion
+        {
+            get { return rolSesion; }
+            set
+            {
+                rolSesion = value;
+            }
+        }
         public TipoMaterial TipoMaterial
         {
             get { return tipoMaterial; }

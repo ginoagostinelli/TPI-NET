@@ -23,36 +23,42 @@ namespace TPI_NET
         private void clientesButton_Click(object sender, EventArgs e)
         {
             ClienteLista clienteLista = new ClienteLista();
+            clienteLista.RolSesion = rolSesion;
             clienteLista.Show();
         }
 
         private void tecnicosButton_Click(object sender, EventArgs e)
         {
             TecnicoLista tecnicoLista = new TecnicoLista();
+            tecnicoLista.RolSesion = rolSesion;
             tecnicoLista.Show();
         }
 
         private void solicitudesButton_Click(object sender, EventArgs e)
         {
             SolicitudLista solicitudLista = new SolicitudLista();
+            solicitudLista.RolSesion = rolSesion;
             solicitudLista.Show();
         }
 
         private void tipoSolicitudesButton_Click(object sender, EventArgs e)
         {
             TipoSolicitudLista tipoSolicitudLista = new TipoSolicitudLista();
+            tipoSolicitudLista.RolSesion = rolSesion;
             tipoSolicitudLista.Show();
         }
 
         private void visitasButton_Click(object sender, EventArgs e)
         {
             VisitaLista visitaLista = new VisitaLista();
+            visitaLista.RolSesion = rolSesion;
             visitaLista.Show();
         }
 
         private void materialesButton_Click(object sender, EventArgs e)
         {
             TipoMaterialLista tipoMaterialLista = new TipoMaterialLista();
+            tipoMaterialLista.RolSesion = rolSesion;
             tipoMaterialLista.Show();
         }
 

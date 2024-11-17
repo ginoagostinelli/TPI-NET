@@ -15,6 +15,15 @@ namespace WindowsForms
     public partial class VisitaMaterialDetalle : Form
     {
         private Material material = new Material();
+        private Rol rolSesion = new Rol();
+        public Rol RolSesion
+        {
+            get { return rolSesion; }
+            set
+            {
+                rolSesion = value;
+            }
+        }
         public Material Material
         {
             get { return material; }

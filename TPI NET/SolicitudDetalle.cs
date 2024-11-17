@@ -8,8 +8,16 @@ namespace WindowsForms
     public partial class SolicitudDetalle : Form
     {
         private Solicitud solicitud;
-        List<string> estadosSolicitud = new List<string> { "En Curso", "Cancelada", "Completada" };
-
+        private List<string> estadosSolicitud = new List<string> { "En Curso", "Cancelada", "Completada" };
+        private Rol rolSesion = new Rol();
+        public Rol RolSesion
+        {
+            get { return rolSesion; }
+            set
+            {
+                rolSesion = value;
+            }
+        }
         public Solicitud Solicitud
         {
             get { return solicitud; }

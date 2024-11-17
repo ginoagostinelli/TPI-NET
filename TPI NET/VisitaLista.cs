@@ -8,6 +8,15 @@ namespace TPI_NET
     public partial class VisitaLista : Form
     {
         IEnumerable<Visita> visitas = null;
+        private Rol rolSesion = new Rol();
+        public Rol RolSesion
+        {
+            get { return rolSesion; }
+            set
+            {
+                rolSesion = value;
+            }
+        }
         public VisitaLista()
         {
             InitializeComponent();

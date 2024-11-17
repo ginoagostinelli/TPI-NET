@@ -15,7 +15,15 @@ namespace WindowsForms
     public partial class TipoSolicitudDetalle : Form
     {
         private TipoSolicitud tipoSolicitud;
-
+        private Rol rolSesion = new Rol();
+        public Rol RolSesion
+        {
+            get { return rolSesion; }
+            set
+            {
+                rolSesion = value;
+            }
+        }
         public TipoSolicitud TipoSolicitud
         {
             get { return tipoSolicitud; }
