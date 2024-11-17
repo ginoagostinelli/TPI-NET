@@ -33,5 +33,16 @@ namespace TPI_NET.APIs
             return rolObtenido;
         }
 
+        public static async Task<IEnumerable<Rol>> GetAllAsync()
+        {
+            IEnumerable<Rol> roles = null;
+            HttpResponseMessage response = await client.GetAsync("roles");
+            if (response.IsSuccessStatusCode)
+            {
+                roles = await response.Content.ReadAsAsync<IEnumerable<Rol>>();
+            }
+            return roles;
+        }
+
     }
 }

@@ -397,4 +397,13 @@ app.MapGet("/roles/{rol}", (int rol) =>
 .WithName("GetRol")
 .WithOpenApi();
 
+app.MapGet("/roles", () =>
+{
+    RolService rolService = new RolService();
+
+    return rolService.GetAll();
+})
+.WithName("GetAllRol")
+.WithOpenApi();
+
 app.Run();

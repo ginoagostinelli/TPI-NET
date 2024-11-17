@@ -7,7 +7,7 @@ namespace WindowsForms
     public partial class TecnicoDetalle : Form
     {
         private Tecnico tecnico;
-        private List<int> roles = new List<int> { 1, 2 };
+        private List<Rol> roles = null;
         private Rol rolSesion = new Rol();
         public Rol RolSesion
         {
@@ -144,7 +144,14 @@ namespace WindowsForms
 
         private void TecnicoDetalle_Load(object sender, EventArgs e)
         {
-            rolComboBox.DataSource = roles;
+            LoadRoles();
+        }
+
+        private async void LoadRoles()
+        {
+            rolComboBox.DataSource = await RolApiClient.GetAllAsync();
+            rolComboBox.DisplayMember = "Descripcion";
+            rolComboBox.ValueMember = "Id";
         }
     }
 }
