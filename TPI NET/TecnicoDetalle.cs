@@ -44,7 +44,6 @@ namespace WindowsForms
             {
                 this.Tecnico.Nombre = this.nombreTextBox.Text;
                 this.Tecnico.Apellido = this.apellidoTextBox.Text;
-                this.Tecnico.NombreMix = this.apellidoTextBox.Text + ", " + this.nombreTextBox.Text;
                 this.Tecnico.Telefono = this.telefonoTextBox.Text;
                 this.Tecnico.Email = this.emailTextBox.Text;
                 this.Tecnico.Password = this.contraTextBox.Text;

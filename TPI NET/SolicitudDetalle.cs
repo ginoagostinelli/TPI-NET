@@ -1,5 +1,6 @@
 ﻿using Dominio.Model;
 using System.Data;
+using TPI_NET;
 using TPI_NET.APIs;
 
 
@@ -111,6 +112,18 @@ namespace WindowsForms
         private void SolicitudDetalle_Load(object sender, EventArgs e)
         {
             estadoBox.DataSource = estadosSolicitud;
+            if (this.solicitud.Id == 0)
+            {
+                this.visitasButton.Enabled = false;
+            }
+        }
+
+        private void visitasButton_Click(object sender, EventArgs e)
+        {
+            VisitaLista visitaLista = new VisitaLista();
+            visitaLista.RolSesion = rolSesion;
+            visitaLista.Solicitud = this.solicitud;
+            visitaLista.Show();
         }
     }
 }

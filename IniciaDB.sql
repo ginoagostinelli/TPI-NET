@@ -122,6 +122,82 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+CREATE TABLE [dbo].[Clientes](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Nombre] [nvarchar](max) NOT NULL,
+	[Apellido] [nvarchar](max) NOT NULL,
+	[RazonSocial] [nvarchar](max) NULL,
+	[Direccion] [nvarchar](max) NOT NULL,
+	[Telefono] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_Clientes] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[Materiales](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Tipo] [int] NOT NULL,
+	[Visita] [int] NOT NULL,
+	[Cantidad] [int] NOT NULL,
+ CONSTRAINT [PK_Materiales] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[Solicitudes](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Estado] [nvarchar](max) NOT NULL,
+	[Motivo] [nvarchar](max) NOT NULL,
+	[Fecha] [datetime] NOT NULL,
+	[Conclusion] [nvarchar](max) NOT NULL,
+	[Tipo] [int] NOT NULL,
+	[Cliente] [int] NOT NULL,
+ CONSTRAINT [PK_Solicitudes] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[TiposMateriales](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Descripcion] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_TiposMateriales] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[TiposSolicitudes](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Nombre] [nvarchar](max) NOT NULL,
+	[Descripcion] [nvarchar](max) NOT NULL,
+ CONSTRAINT [PK_TiposSolicitudes] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[Visitas](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Descripcion] [nvarchar](max) NOT NULL,
+	[DebeVolver] [bit] NOT NULL,
+	[Fecha] [datetime] NOT NULL,
+	[Tecnico] [int] NOT NULL,
+	[Solicitud] [int] NOT NULL,
+ CONSTRAINT [PK_Visitas] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
 CREATE TABLE [dbo].[Roles](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Descripcion] [nvarchar](max) NOT NULL,
@@ -160,7 +236,6 @@ CREATE TABLE [dbo].[Tecnicos](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Nombre] [nvarchar](max) NOT NULL,
 	[Apellido] [nvarchar](max) NOT NULL,
-	[NombreMix] [nvarchar](max) NOT NULL,
 	[Email] [nvarchar](max) NOT NULL,
 	[Password] [nvarchar](max) NOT NULL,
 	[Rol] [int] NOT NULL,

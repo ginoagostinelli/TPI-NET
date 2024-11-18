@@ -18,7 +18,16 @@ namespace WindowsForms
         private Visita visita;
         private List<Material>? materiales = new List<Material>();
         private IEnumerable<TipoMaterial> tipos;
+        private Solicitud solicitud = new Solicitud();
         private Rol rolSesion = new Rol();
+        public Solicitud Solicitud
+        {
+            get { return solicitud; }
+            set
+            {
+                solicitud = value;
+            }
+        }
         public Rol RolSesion
         {
             get { return rolSesion; }
@@ -55,32 +64,25 @@ namespace WindowsForms
                 this.Visita.Descripcion = this.descripcionTextBox.Text;
                 this.Visita.DebeVolver = this.volverCheckBox.Checked;
                 this.Visita.Tecnico = (int)this.tecnicoComboBox.SelectedValue;
-                this.Visita.Solicitud = 1;
+                this.Visita.Solicitud = this.solicitud.Id;
                 this.Visita.Fecha = DateTime.UtcNow;
 
-                //this.Visita.Solicitud = this.direccionTextBox.Text;
-                //this.Visita.Fecha = this.telefonoTextBox.Text;
+            
 
                 if (this.EditMode)
                 {
                     await VisitaApiClient.UpdateAsync(this.Visita);
-                    /*foreach (Material material in materiales)
-                    {
-                        material.Visita = this.Visita.Id;
-                    }*/
+           
                     await MaterialApiClient.AddListaAsync(materiales, this.Visita.Id);
                 }
                 else
                 {
                     auxiliar = await VisitaApiClient.AddAsync(this.Visita);
-                    /*foreach (Material material in materiales)
-                    {
-                        material.Visita = auxiliar.Id;
-                    }*/
+              
                     await MaterialApiClient.AddListaAsync(materiales, auxiliar.Id);
                 }
 
-                //await MaterialApiClient.AddListaAsync(materiales, this.Visita.Id);
+    
 
                 this.Close();
             }
@@ -102,8 +104,8 @@ namespace WindowsForms
             this.descripcionTextBox.Text = this.Visita.Descripcion;
             this.volverCheckBox.Checked = this.Visita.DebeVolver;
             this.tecnicoComboBox.SelectedValue = this.Visita.Tecnico;
-            //this.direccionTextBox.Text = this.Visita.Solicitud;
-            //this.telefonoTextBox.Text = this.Visita.Fecha;
+            //this.direccionTextBox.Text = this.Visita.Solicitud-> ¿setear visita?
+     
         }
 
         private async void GetAllAndLoad()

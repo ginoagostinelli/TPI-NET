@@ -9,12 +9,22 @@ namespace TPI_NET
     {
         IEnumerable<Visita> visitas = null;
         private Rol rolSesion = new Rol();
+        private Solicitud solicitud = new Solicitud();
         public Rol RolSesion
         {
             get { return rolSesion; }
             set
             {
                 rolSesion = value;
+            }
+        }
+
+        public Solicitud Solicitud
+        {
+            get { return solicitud; }
+            set
+            {
+                solicitud = value;
             }
         }
         public VisitaLista()
@@ -33,6 +43,7 @@ namespace TPI_NET
             Visita visitaNuevo = new Visita();
 
             visitaDetalle.Visita = visitaNuevo;
+            visitaDetalle.Solicitud = this.solicitud;
 
             visitaDetalle.ShowDialog();
 
@@ -51,6 +62,7 @@ namespace TPI_NET
 
             visitaDetalle.EditMode = true;
             visitaDetalle.Visita = visita;
+            visitaDetalle.Solicitud = this.solicitud;
 
             visitaDetalle.ShowDialog();
 
@@ -90,6 +102,8 @@ namespace TPI_NET
                                             Tecnico = t.NombreMix,
                                         }).ToList();
             
+            
+
             if (this.dgvLista.Rows.Count > 0)
             {
                 this.dgvLista.Rows[0].Selected = true;
@@ -100,6 +114,22 @@ namespace TPI_NET
             {
                 this.btnEliminar.Enabled = false;
                 this.btnModificar.Enabled = false;
+            }
+
+            
+
+            if (this.solicitud.Id == 0)
+            {
+                this.btnAgregar.Enabled = false;
+                this.btnEliminar.Enabled = false;
+                this.btnModificar.Enabled = false;
+            }
+            else
+            {
+                //EJECUTAR ROL AQUI EN LUGAR DE LOS ENABLED
+                this.btnAgregar.Enabled = true;
+                this.btnEliminar.Enabled = true;
+                this.btnModificar.Enabled = true;
             }
         }
 

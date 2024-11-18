@@ -45,6 +45,7 @@
             clienteBox = new ComboBox();
             tipoBox = new ComboBox();
             estadoBox = new ComboBox();
+            visitasButton = new Button();
             ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             SuspendLayout();
             // 
@@ -61,7 +62,7 @@
             // 
             // aceptarButton
             // 
-            aceptarButton.Location = new Point(391, 462);
+            aceptarButton.Location = new Point(390, 521);
             aceptarButton.Margin = new Padding(2, 1, 2, 1);
             aceptarButton.Name = "aceptarButton";
             aceptarButton.Size = new Size(92, 27);
@@ -76,7 +77,7 @@
             // 
             // cancelarButton
             // 
-            cancelarButton.Location = new Point(500, 462);
+            cancelarButton.Location = new Point(499, 521);
             cancelarButton.Margin = new Padding(2, 1, 2, 1);
             cancelarButton.Name = "cancelarButton";
             cancelarButton.Size = new Size(92, 27);
@@ -211,12 +212,24 @@
             estadoBox.TabIndex = 22;
             estadoBox.ValueMember = "En Curso";
             // 
+            // visitasButton
+            // 
+            visitasButton.Location = new Point(499, 471);
+            visitasButton.Margin = new Padding(2, 1, 2, 1);
+            visitasButton.Name = "visitasButton";
+            visitasButton.Size = new Size(92, 27);
+            visitasButton.TabIndex = 23;
+            visitasButton.Text = "Visitas";
+            visitasButton.UseVisualStyleBackColor = true;
+            visitasButton.Click += visitasButton_Click;
+            // 
             // SolicitudDetalle
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(636, 508);
+            ClientSize = new Size(636, 558);
+            Controls.Add(visitasButton);
             Controls.Add(estadoBox);
             Controls.Add(tipoBox);
             Controls.Add(clienteBox);
@@ -259,5 +272,6 @@
         private ComboBox estadoBox;
         private ComboBox tipoBox;
         private ComboBox clienteBox;
+        private Button visitasButton;
     }
 }
