@@ -71,17 +71,18 @@ namespace TPI_NET
 
         private async void GetAllAndLoad()
         {
-            ClienteApiClient client = new ClienteApiClient();
             this.btnEliminar.Enabled = false;
             this.btnModificar.Enabled = false;
+            this.btnAgregar.Enabled = false;
 
             this.dgvLista.DataSource = null;
             this.dgvLista.DataSource = await ClienteApiClient.GetAllAsync();
 
+            EjecutarRol();
             if (this.dgvLista.Rows.Count > 0)
             {
                 this.dgvLista.Rows[0].Selected = true;
-                EjecutarRol();
+                
             }
             else
             {

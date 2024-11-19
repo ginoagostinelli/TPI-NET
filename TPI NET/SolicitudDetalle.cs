@@ -8,6 +8,7 @@ namespace WindowsForms
 {
     public partial class SolicitudDetalle : Form
     {
+        private bool viendo = false;
         private Solicitud solicitud;
         private List<string> estadosSolicitud = new List<string> { "En Curso", "Cancelada", "Completada" };
         private Rol rolSesion = new Rol();
@@ -37,29 +38,36 @@ namespace WindowsForms
 
         private async void aceptarButton_Click(object sender, EventArgs e)
         {
-            SolicitudApiClient client = new SolicitudApiClient();
-
-            if (this.ValidateSolicitud())
+            
+            if(viendo)
             {
-                this.Solicitud.Estado = estadoBox.Text;
-                this.Solicitud.Motivo = motivoBox.Text;
-                this.Solicitud.Conclusion = conclusionBox.Text;
-                this.Solicitud.Tipo = (int)tipoBox.SelectedValue;
-                this.Solicitud.Cliente = (int)clienteBox.SelectedValue;
-
-                this.Solicitud.Fecha = DateTime.Today;
-
-                if (this.EditMode)
-                {
-                    await SolicitudApiClient.UpdateAsync(this.Solicitud);
-                }
-                else
-                {
-                    await SolicitudApiClient.AddAsync(this.Solicitud);
-                }
-
                 this.Close();
             }
+            else
+            {
+                if (this.ValidateSolicitud())
+                {
+                    this.Solicitud.Estado = estadoBox.Text;
+                    this.Solicitud.Motivo = motivoBox.Text;
+                    this.Solicitud.Conclusion = conclusionBox.Text;
+                    this.Solicitud.Tipo = (int)tipoBox.SelectedValue;
+                    this.Solicitud.Cliente = (int)clienteBox.SelectedValue;
+
+                    this.Solicitud.Fecha = DateTime.Today;
+
+                    if (this.EditMode)
+                    {
+                        await SolicitudApiClient.UpdateAsync(this.Solicitud);
+                    }
+                    else
+                    {
+                        await SolicitudApiClient.AddAsync(this.Solicitud);
+                    }
+
+                    this.Close();
+                }
+            }
+            
         }
 
         private void cancelarButton_Click(object sender, EventArgs e)
@@ -116,6 +124,8 @@ namespace WindowsForms
             {
                 this.visitasButton.Enabled = false;
             }
+
+            EjecutarRol();
         }
 
         private void visitasButton_Click(object sender, EventArgs e)
@@ -124,6 +134,23 @@ namespace WindowsForms
             visitaLista.RolSesion = rolSesion;
             visitaLista.Solicitud = this.solicitud;
             visitaLista.Show();
+        }
+
+        private void EjecutarRol()
+        {
+
+            if (!(this.rolSesion.SolicitudesAgregar || this.rolSesion.SolicitudesModificar)) 
+            {
+                this.estadoBox.Enabled = false;
+                this.tipoBox.Enabled = false;
+                this.clienteBox.Enabled = false;
+                this.motivoBox.Enabled = false;
+                this.conclusionBox.Enabled = false;
+                this.viendo = true;
+            }
+            
+
+
         }
     }
 }

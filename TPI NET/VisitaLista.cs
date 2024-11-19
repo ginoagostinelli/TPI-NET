@@ -84,31 +84,50 @@ namespace TPI_NET
 
         private async void GetAllAndLoad()
         {
-            //VisitaApiClient client = new VisitaApiClient();
-            //TecnicoApiClient tecnicoClient = new TecnicoApiClient();
+            this.btnEliminar.Enabled = false;
+            this.btnModificar.Enabled = false;
+            this.btnAgregar.Enabled = false;
             this.visitas = await VisitaApiClient.GetAllAsync();
             IEnumerable<Tecnico> tecnicos = await TecnicoApiClient.GetAllAsync();
 
             this.dgvLista.DataSource = null;
-            this.dgvLista.DataSource = (from v in this.visitas
-                                        join t in tecnicos
-                                        on v.Tecnico equals t.Id
-                                        select new
-                                        {
-                                            Id = v.Id,
-                                            Descripcion = v.Descripcion,
-                                            DebeVolver = v.DebeVolver,
-                                            Fecha = v.Fecha,
-                                            Tecnico = t.NombreMix,
-                                        }).ToList();
-            
+            if (this.solicitud.Id == 0)
+            {
+                this.dgvLista.DataSource = (from v in this.visitas
+                                            join t in tecnicos
+                                            on v.Tecnico equals t.Id
+                                            select new
+                                            {
+                                                Id = v.Id,
+                                                Descripcion = v.Descripcion,
+                                                DebeVolver = v.DebeVolver,
+                                                Fecha = v.Fecha,
+                                                Tecnico = t.NombreMix,
+                                            }).ToList();
+            }
+            else
+            {
+                this.dgvLista.DataSource = (from v in this.visitas
+                                            join t in tecnicos
+                                            on v.Tecnico equals t.Id
+                                            where v.Solicitud == this.solicitud.Id
+                                            select new
+                                            {
+                                                Id = v.Id,
+                                                Descripcion = v.Descripcion,
+                                                DebeVolver = v.DebeVolver,
+                                                Fecha = v.Fecha,
+                                                Tecnico = t.NombreMix,
+                                            }).ToList();
+            }
+
+            EjecutarRol();
             
 
             if (this.dgvLista.Rows.Count > 0)
             {
                 this.dgvLista.Rows[0].Selected = true;
-                this.btnEliminar.Enabled = true;
-                this.btnModificar.Enabled = true;
+                
             }
             else
             {
@@ -124,13 +143,7 @@ namespace TPI_NET
                 this.btnEliminar.Enabled = false;
                 this.btnModificar.Enabled = false;
             }
-            else
-            {
-                //EJECUTAR ROL AQUI EN LUGAR DE LOS ENABLED
-                this.btnAgregar.Enabled = true;
-                this.btnEliminar.Enabled = true;
-                this.btnModificar.Enabled = true;
-            }
+            
         }
 
         private Visita? SelectedItem()
@@ -143,6 +156,20 @@ namespace TPI_NET
                         select v).FirstOrDefault();
 
             return visita;
+        }
+
+        private void EjecutarRol()
+        {
+            if (this.rolSesion.VisitasAgregar) this.btnAgregar.Enabled = true;
+            else this.btnAgregar.Enabled = false;
+
+            if (this.rolSesion.VisitasModificar) this.btnModificar.Enabled = true;
+            else this.btnModificar.Enabled = false;
+
+            if (this.rolSesion.VisitasEliminar) this.btnEliminar.Enabled = true;
+            else this.btnEliminar.Enabled = false;
+
+
         }
     }
 }

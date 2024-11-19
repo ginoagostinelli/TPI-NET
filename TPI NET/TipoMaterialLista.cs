@@ -73,18 +73,18 @@ namespace WindowsForms
 
         private async void GetAllAndLoad()
         {
-            TipoMaterialApiClient client = new TipoMaterialApiClient();
             this.eliminarButton.Enabled = false;
             this.modificarButton.Enabled = false;
+            this.agregarButton.Enabled = false;
 
             this.tipoMaterialDataGridView.DataSource = null;
             this.tipoMaterialDataGridView.DataSource = await TipoMaterialApiClient.GetAllAsync();
 
+            EjecutarRol();
+
             if (this.tipoMaterialDataGridView.Rows.Count > 0)
             {
                 this.tipoMaterialDataGridView.Rows[0].Selected = true;
-                this.eliminarButton.Enabled = true;
-                this.modificarButton.Enabled = true;
             }
             else
             {

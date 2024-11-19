@@ -49,11 +49,13 @@ namespace WindowsForms
 
             solicitudDetalle.EditMode = true;
             solicitudDetalle.Solicitud = solicitud;
+            solicitudDetalle.RolSesion = rolSesion;
 
             solicitudDetalle.ShowDialog();
 
             this.GetAllAndLoad();
         }
+
 
         private async void eliminarButton_Click(object sender, EventArgs e)
         {
@@ -69,18 +71,19 @@ namespace WindowsForms
 
         private async void GetAllAndLoad()
         {
-            SolicitudApiClient client = new SolicitudApiClient();
             this.eliminarButton.Enabled = false;
             this.modificarButton.Enabled = false;
+            this.agregarButton.Enabled = false;
 
             this.solicitudesDataGridView.DataSource = null;
             this.solicitudesDataGridView.DataSource = await SolicitudApiClient.GetAllAsync();
 
+            EjecutarRol();
+
             if (this.solicitudesDataGridView.Rows.Count > 0)
             {
                 this.solicitudesDataGridView.Rows[0].Selected = true;
-                this.eliminarButton.Enabled = true;
-                this.modificarButton.Enabled = true;
+                
             }
             else
             {
@@ -97,7 +100,22 @@ namespace WindowsForms
 
             return solicitud;
         }
+        private void EjecutarRol()
+        {
 
+            if (this.rolSesion.SolicitudesAgregar) this.agregarButton.Enabled = true;
+            else this.agregarButton.Enabled = false;
+
+            if (this.rolSesion.SolicitudesModificar || this.rolSesion.SolicitudesVer) this.modificarButton.Enabled = true;
+            else this.modificarButton.Enabled = false;
+
+            if (this.rolSesion.SolicitudesEliminar) this.eliminarButton.Enabled = true;
+            else this.eliminarButton.Enabled = false;
+
+            if (this.rolSesion.SolicitudesVer) this.modificarButton.Text = "Ver";
+
+
+        }
 
     }
 }

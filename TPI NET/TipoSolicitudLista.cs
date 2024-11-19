@@ -70,18 +70,18 @@ namespace TPI_NET
 
         private async void GetAllAndLoad()
         {
-            TipoSolicitudApiClient tipoSolicitud = new TipoSolicitudApiClient();
+            this.btnAgregar.Enabled = false;
             this.btnEliminar.Enabled = false;
             this.btnModificar.Enabled = false;
 
             this.dgvLista.DataSource = null;
             this.dgvLista.DataSource = await TipoSolicitudApiClient.GetAllAsync();
 
+            EjecutarRol();
             if (this.dgvLista.Rows.Count > 0)
             {
                 this.dgvLista.Rows[0].Selected = true;
-                this.btnEliminar.Enabled = true;
-                this.btnModificar.Enabled = true;
+                
             }
             else
             {
@@ -97,6 +97,20 @@ namespace TPI_NET
             tipoSolicitud = (TipoSolicitud) dgvLista.SelectedRows[0].DataBoundItem;
 
             return tipoSolicitud;
+        }
+
+        private void EjecutarRol()
+        {
+            if (this.rolSesion.TiposSolicitudesAgregar) this.btnAgregar.Enabled = true;
+            else this.btnAgregar.Enabled = false;
+
+            if (this.rolSesion.TiposSolicitudesModificar) this.btnModificar.Enabled = true;
+            else this.btnModificar.Enabled = false;
+
+            if (this.rolSesion.TiposSolicitudesEliminar) this.btnEliminar.Enabled = true;
+            else this.btnEliminar.Enabled = false;
+
+
         }
     }
 }

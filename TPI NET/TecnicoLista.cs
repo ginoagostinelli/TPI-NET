@@ -72,17 +72,18 @@ namespace WindowsForms
 
         private async void GetAllAndLoad()
         {
-            TecnicoApiClient client = new TecnicoApiClient();
             this.eliminarButton.Enabled = false;
             this.modificarButton.Enabled = false;
+            this.agregarButton.Enabled = false;
 
             this.tecnicosDataGridView.DataSource = null;
             this.tecnicosDataGridView.DataSource = await TecnicoApiClient.GetAllAsync();
 
+            EjecutarRol();
+
             if (this.tecnicosDataGridView.Rows.Count > 0)
             {
                 this.tecnicosDataGridView.Rows[0].Selected = true;
-                EjecutarRol();
             }
             else
             {
