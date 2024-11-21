@@ -31,6 +31,7 @@ namespace WindowsForms
             Solicitud solicitudNuevo = new Solicitud();
 
             solicitudDetalle.Solicitud = solicitudNuevo;
+            solicitudDetalle.RolSesion = rolSesion;
 
             solicitudDetalle.ShowDialog();
 
@@ -112,7 +113,7 @@ namespace WindowsForms
             if (this.rolSesion.SolicitudesEliminar) this.eliminarButton.Enabled = true;
             else this.eliminarButton.Enabled = false;
 
-            if (this.rolSesion.SolicitudesVer) this.modificarButton.Text = "Ver";
+            if (this.rolSesion.SolicitudesVer && !this.rolSesion.SolicitudesModificar) this.modificarButton.Text = "Ver";
 
 
         }

@@ -406,4 +406,13 @@ app.MapGet("/roles", () =>
 .WithName("GetAllRol")
 .WithOpenApi();
 
+app.MapGet("/repportipo", () =>
+{
+    ReporteService reporteService = new ReporteService();
+
+    return reporteService.PorTipo();
+})
+.WithName("GetRepPorTipo")
+.WithOpenApi();
+
 app.Run();

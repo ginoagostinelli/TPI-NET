@@ -1,0 +1,61 @@
+﻿@page "/reportetipos"
+@using ChartJs.Blazor.PieChart
+@inject HttpClient Http
+
+<PageTitle>Lista de Clientes</PageTitle>
+
+<h1>Reporte: Tipos de Solicitudes</h1>
+
+<p>Porcentaje por Tipos de Solicitudes</p>
+
+<Chart Config="_configuracionPastel"></Chart>
+
+
+@code {
+    
+
+    private PieConfig _configuracionPastel;
+    protected override void OnInitialized()
+    {
+        RealizarConfiguracionPastel();
+    }
+
+    private void RealizarConfiguracionPastel()
+    {
+        _configuracionPastel = new PieConfig();
+        _configuracionPastel.Options = new PieOptions
+            {
+                Responsive = true,
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "Titulo del grafico"
+                }
+            };
+
+        foreach (var item in new[] { "Tipo1", "Tipo2", "Tipo3"})
+        {
+            _configuracionPastel.Data.Labels.Add(item);
+        }
+
+        PieDataset<int> dataset = new PieDataset<int>(new[] { 35, 50, 15 })
+        {
+            BackgroundColor = new[]
+            {
+                ColorUtil.ColorHexString(255, 0, 0),
+                ColorUtil.ColorHexString(0, 255, 0),
+                ColorUtil.ColorHexString(0, 0, 255),
+            }
+        };
+        _configuracionPastel.Data.Datasets.Add(dataset);
+    }
+
+    /*from s in solicitudes
+     join t in tipos on s.Tipo = t.Id
+
+    /*where docs.AttachId != null*/
+    /*
+    group s by s.Nombre into g
+    where g.Count() > 0
+    select new {count = g.Count(), Nombre = g.Key}*/
+}
