@@ -28,47 +28,50 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             dgvLista = new DataGridView();
             btnAgregar = new Button();
             btnModificar = new Button();
             btnEliminar = new Button();
             label1 = new Label();
+            busquedaTextBox = new TextBox();
+            label2 = new Label();
+            limpiarButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvLista).BeginInit();
             SuspendLayout();
             // 
             // dgvLista
             // 
             dgvLista.BackgroundColor = SystemColors.ButtonFace;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvLista.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgvLista.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dgvLista.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgvLista.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.Window;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle8.ForeColor = SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            dgvLista.DefaultCellStyle = dataGridViewCellStyle8;
             dgvLista.GridColor = SystemColors.InactiveCaption;
-            dgvLista.Location = new Point(12, 59);
+            dgvLista.Location = new Point(12, 90);
             dgvLista.Name = "dgvLista";
-            dataGridViewCellStyle6.BackColor = Color.DarkGray;
-            dataGridViewCellStyle6.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(128, 128, 255);
-            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
-            dgvLista.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            dgvLista.Size = new Size(923, 325);
+            dataGridViewCellStyle9.BackColor = Color.DarkGray;
+            dataGridViewCellStyle9.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle9.ForeColor = Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(128, 128, 255);
+            dataGridViewCellStyle9.SelectionForeColor = Color.Black;
+            dgvLista.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dgvLista.Size = new Size(923, 294);
             dgvLista.TabIndex = 0;
             // 
             // btnAgregar
@@ -115,12 +118,42 @@
             label1.TabIndex = 13;
             label1.Text = "Lista Clientes";
             // 
+            // busquedaTextBox
+            // 
+            busquedaTextBox.Location = new Point(103, 61);
+            busquedaTextBox.Name = "busquedaTextBox";
+            busquedaTextBox.Size = new Size(270, 23);
+            busquedaTextBox.TabIndex = 14;
+            busquedaTextBox.TextChanged += busquedaTextBox_TextChanged;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(35, 64);
+            label2.Name = "label2";
+            label2.Size = new Size(62, 15);
+            label2.TabIndex = 15;
+            label2.Text = "Búsqueda:";
+            // 
+            // limpiarButton
+            // 
+            limpiarButton.Location = new Point(379, 61);
+            limpiarButton.Name = "limpiarButton";
+            limpiarButton.Size = new Size(121, 23);
+            limpiarButton.TabIndex = 16;
+            limpiarButton.Text = "Limpiar búsqueda";
+            limpiarButton.UseVisualStyleBackColor = true;
+            limpiarButton.Click += limpiarButton_Click;
+            // 
             // ClienteLista
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(947, 450);
+            Controls.Add(limpiarButton);
+            Controls.Add(label2);
+            Controls.Add(busquedaTextBox);
             Controls.Add(label1);
             Controls.Add(btnEliminar);
             Controls.Add(btnModificar);
@@ -142,5 +175,8 @@
         private Button btnModificar;
         private Button btnEliminar;
         private Label label1;
+        private TextBox busquedaTextBox;
+        private Label label2;
+        private Button limpiarButton;
     }
 }

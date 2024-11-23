@@ -2,6 +2,7 @@ using Dominio.Model;
 using TPI_NET.APIs;
 using WindowsForms;
 
+
 namespace TPI_NET
 {
     public partial class ClienteLista : Form
@@ -82,7 +83,7 @@ namespace TPI_NET
             if (this.dgvLista.Rows.Count > 0)
             {
                 this.dgvLista.Rows[0].Selected = true;
-                
+
             }
             else
             {
@@ -111,7 +112,24 @@ namespace TPI_NET
             if (this.rolSesion.ClientesEliminar) this.btnEliminar.Enabled = true;
             else this.btnEliminar.Enabled = false;
 
-            
+
+        }
+
+        private async void busquedaTextBox_TextChanged(object sender, EventArgs e)
+        {
+            IEnumerable<Cliente> clientes = await ClienteApiClient.GetAllAsync();
+
+            List<Cliente> clientesFiltrados = (from c in clientes
+                                                where c.NombreMix.Contains(this.busquedaTextBox.Text, StringComparison.OrdinalIgnoreCase)
+                                                select c).ToList();
+
+            this.dgvLista.DataSource = clientesFiltrados;
+        }
+
+        private void limpiarButton_Click(object sender, EventArgs e)
+        {
+            this.busquedaTextBox.Clear();
+            GetAllAndLoad();
         }
     }
 }
