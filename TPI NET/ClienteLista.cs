@@ -8,6 +8,7 @@ namespace TPI_NET
     public partial class ClienteLista : Form
     {
         private Rol rolSesion = new Rol();
+        private IEnumerable<Cliente> clientes;
         public Rol RolSesion
         {
             get { return rolSesion; }
@@ -77,7 +78,11 @@ namespace TPI_NET
             this.btnAgregar.Enabled = false;
 
             this.dgvLista.DataSource = null;
-            this.dgvLista.DataSource = await ClienteApiClient.GetAllAsync();
+            
+            clientes = await ClienteApiClient.GetAllAsync();
+            this.dgvLista.DataSource = clientes;
+
+            this.dgvLista.Columns[6].Visible = false;
 
             EjecutarRol();
             if (this.dgvLista.Rows.Count > 0)
@@ -115,12 +120,11 @@ namespace TPI_NET
 
         }
 
-        private async void busquedaTextBox_TextChanged(object sender, EventArgs e)
+        private void busquedaTextBox_TextChanged(object sender, EventArgs e)
         {
-            IEnumerable<Cliente> clientes = await ClienteApiClient.GetAllAsync();
-
+            
             List<Cliente> clientesFiltrados = (from c in clientes
-                                                where c.NombreMix.Contains(this.busquedaTextBox.Text, StringComparison.OrdinalIgnoreCase)
+                                               where c.NombreMix.Contains(this.busquedaTextBox.Text, StringComparison.OrdinalIgnoreCase)
                                                 select c).ToList();
 
             this.dgvLista.DataSource = clientesFiltrados;
