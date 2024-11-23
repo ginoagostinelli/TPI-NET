@@ -1,24 +1,44 @@
 ﻿@page "/reportetipos"
 @using ChartJs.Blazor.PieChart
+@using Dominio.Model
+
 @inject HttpClient Http
 
-<PageTitle>Lista de Clientes</PageTitle>
+<PageTitle>Solicitudes por tipo</PageTitle>
 
-<h1>Reporte: Tipos de Solicitudes</h1>
+<h1>Reporte: Solicitudes por tipo</h1>
 
-<p>Porcentaje por Tipos de Solicitudes</p>
+<p>Solicitudes por tipo</p>
 
-<Chart Config="_configuracionPastel"></Chart>
 
+@if (reporte == null)
+{
+    <p><em>Cargando...</em></p>
+}
+else
+{
+    <Chart Config="_configuracionPastel"></Chart>
+}
 
 @code {
-    
+
 
     private PieConfig _configuracionPastel;
-    protected override void OnInitialized()
+    private RepPorTipo[]? reporte;
+
+    private static HttpClient client = new HttpClient();
+
+
+    protected override async Task OnInitializedAsync()
     {
+        reporte = await Http.GetFromJsonAsync<RepPorTipo[]>("http://localhost:5189/repportipo");
         RealizarConfiguracionPastel();
     }
+
+    /*protected override void OnInitialized()
+    {
+        RealizarConfiguracionPastel();
+    }*/
 
     private void RealizarConfiguracionPastel()
     {
@@ -29,33 +49,23 @@
                 Title = new OptionsTitle
                 {
                     Display = true,
-                    Text = "Titulo del grafico"
+                    Text = "Solicitudes por tipo"
                 }
             };
 
-        foreach (var item in new[] { "Tipo1", "Tipo2", "Tipo3"})
+        foreach (var item in reporte)
         {
-            _configuracionPastel.Data.Labels.Add(item);
+            _configuracionPastel.Data.Labels.Add(item.Nombre);
         }
 
-        PieDataset<int> dataset = new PieDataset<int>(new[] { 35, 50, 15 })
+        PieDataset<int> dataset = new PieDataset<int>((from i in reporte select i.Total).ToArray())
         {
             BackgroundColor = new[]
             {
-                ColorUtil.ColorHexString(255, 0, 0),
-                ColorUtil.ColorHexString(0, 255, 0),
-                ColorUtil.ColorHexString(0, 0, 255),
+                "Red", "Blue", "Purple", "Yellow", "Cyan", "Orange", "Gray",
+                
             }
         };
         _configuracionPastel.Data.Datasets.Add(dataset);
     }
-
-    /*from s in solicitudes
-     join t in tipos on s.Tipo = t.Id
-
-    /*where docs.AttachId != null*/
-    /*
-    group s by s.Nombre into g
-    where g.Count() > 0
-    select new {count = g.Count(), Nombre = g.Key}*/
 }
