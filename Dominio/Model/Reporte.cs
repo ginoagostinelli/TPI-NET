@@ -11,4 +11,16 @@ namespace Dominio.Model
         public string Nombre { get; set; }
         public int Total { get; set; }
     }
+
+    public class RepSolicitudesPorCliente
+    {
+        public string Cliente { get; set; }
+        public int Total { get; set; }
+    }
+
+    public class FechasReporte
+    {
+        public DateTime Desde { get; set; }
+        public DateTime Hasta { get; set; }
+    }
 }

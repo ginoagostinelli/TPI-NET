@@ -415,4 +415,13 @@ app.MapGet("/repportipo", () =>
 .WithName("GetRepPorTipo")
 .WithOpenApi();
 
+app.MapPost("/repporcliente", (FechasReporte fecha) =>
+{
+    ReporteService reporteService = new ReporteService();
+
+    return reporteService.PorCliente(fecha);
+})
+.WithName("PostRepPorCliente")
+.WithOpenApi();
+
 app.Run();

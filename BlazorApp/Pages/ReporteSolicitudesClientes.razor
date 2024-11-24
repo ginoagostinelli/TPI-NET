@@ -1,0 +1,90 @@
+﻿@page "/reportesolicitudes"
+@using Dominio.Model
+@using System.Globalization
+@inject HttpClient Http
+
+<PageTitle>Reporte Solitudes por cliente</PageTitle>
+
+<h1>Solicitudes por cliente</h1>
+
+<p>Total de solicitudes por cliente en un periodo determinado.</p>
+
+<div>
+    <div class="form-group">
+        <label for="fechaDesdeInput">Desde:</label>
+        <input type="datetime-local" class="form-control" id="fechaDesdeInput" aria-describedby="fechaDesdeAyuda" @oninput="CargaFechaDesde" />
+        <small id="fechaDesdeAyuda" class="form-text text-muted">Ingrese fecha de inicio para el reporte</small>
+    </div>
+    <div class="form-group">
+        <label for="fechaHastaInput">Hasta:</label>
+        <input type="datetime-local" class="form-control" id="fechaHastaInput" aria-describedby="fechaHastaAyuda" @oninput="CargaFechaHasta" />
+        <small id="fechaHastaAyuda" class="form-text text-muted">Ingrese fecha de fin para el reporte</small>
+    </div>
+    <button class="btn btn-primary" @onclick="ObtenerPeriodo">Generar reporte</button>
+</div>
+
+@if (reporte == null)
+{
+    <p><em>Cargando...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Total de solicitudes</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var linea in reporte)
+            {
+                <tr>
+                    <td>@linea.Cliente</td>
+                    <td>@linea.Total</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private RepSolicitudesPorCliente[]? reporte;
+    private FechasReporte periodoDeFechas = new FechasReporte();
+    private string debugueandostring;
+    private DateTime debugfecha;
+
+    protected override async Task OnInitializedAsync()
+    {
+        periodoDeFechas.Hasta = DateTime.Now;
+        periodoDeFechas.Desde = DateTime.Now.AddDays(-1);
+        HttpResponseMessage response = await Http.PostAsJsonAsync<FechasReporte>("http://localhost:5189/repporcliente", periodoDeFechas);
+        if (response.IsSuccessStatusCode)
+        {   
+            reporte = await response.Content.ReadFromJsonAsync<RepSolicitudesPorCliente[]>();
+        }
+    }
+
+    private async Task ObtenerPeriodo()
+    {
+        reporte = null;
+        HttpResponseMessage response = await Http.PostAsJsonAsync<FechasReporte>("http://localhost:5189/repporcliente", periodoDeFechas);
+        if (response.IsSuccessStatusCode)
+        {
+            reporte = await response.Content.ReadFromJsonAsync<RepSolicitudesPorCliente[]>();
+        }
+    }
+
+    private void CargaFechaDesde(ChangeEventArgs e)
+    {
+        periodoDeFechas.Desde = DateTime.ParseExact(e.Value.ToString(), "yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
+       
+    }
+
+    private void CargaFechaHasta(ChangeEventArgs e)
+    {
+        periodoDeFechas.Hasta = DateTime.ParseExact(e.Value.ToString(), "yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
+    }
+
+}

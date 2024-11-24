@@ -20,6 +20,18 @@ namespace Domain.Services
 
            
         }
+
+        public IEnumerable<RepSolicitudesPorCliente> PorCliente(FechasReporte periodo)
+        {
+            using var context = new EmpresaContext();
+            return (from s in context.Solicitudes
+                    where s.Fecha >= periodo.Desde
+                    && s.Fecha <= periodo.Hasta
+                    group s by s.Cliente into g
+                    where g.Count() > 0
+                    select new RepSolicitudesPorCliente { Cliente = context.Clientes.First(c => c.Id == g.Key).NombreMix, Total = g.Count() }).ToList();
+        }
+
         /*public void Add(Cliente cliente)
         {
             using var context = new EmpresaContext();
