@@ -43,6 +43,23 @@ namespace TPI_NET.APIs
             }
             return roles;
         }
+        public async static Task AddAsync(Rol rol)
+        {
+            HttpResponseMessage response = await client.PostAsJsonAsync("roles", rol);
+            response.EnsureSuccessStatusCode();
+        }
+
+        public static async Task DeleteAsync(int id)
+        {
+            HttpResponseMessage response = await client.DeleteAsync("roles/" + id);
+            response.EnsureSuccessStatusCode();
+        }
+
+        public static async Task UpdateAsync(Rol rol)
+        {
+            HttpResponseMessage response = await client.PutAsJsonAsync("roles", rol);
+            response.EnsureSuccessStatusCode();
+        }
 
     }
 }

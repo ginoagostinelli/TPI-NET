@@ -1,6 +1,7 @@
 using Domain.Services;
 using Dominio.Model;
 using Dominio.Services;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -404,6 +405,33 @@ app.MapGet("/roles", () =>
     return rolService.GetAll();
 })
 .WithName("GetAllRol")
+.WithOpenApi();
+
+app.MapPost("/roles", (Rol rol) =>
+{
+    RolService rolService = new RolService();
+
+    rolService.Add(rol);
+})
+.WithName("AddRol")
+.WithOpenApi();
+
+app.MapPut("/roles", (Rol rol) =>
+{
+    RolService rolService = new RolService();
+
+    rolService.Update(rol);
+})
+.WithName("UpdateRol")
+.WithOpenApi();
+
+app.MapDelete("/roles/{id}", (int id) =>
+{
+    RolService rolService = new RolService();
+
+    rolService.Delete(id);
+})
+.WithName("DeleteRol")
 .WithOpenApi();
 
 app.MapGet("/repportipo", () =>
