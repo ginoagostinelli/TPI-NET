@@ -131,6 +131,7 @@
             Controls.Add(ingresarButton);
             ForeColor = SystemColors.ActiveCaptionText;
             Name = "MenuLogin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             ResumeLayout(false);
             PerformLayout();
