@@ -82,23 +82,21 @@ namespace TPI_NET
 
         private void EjecutarRol()
         {
-            if (this.rolSesion.ClientesVer) this.clientesButton.Enabled = true;
-            else this.clientesButton.Enabled = false;
 
-            if (this.rolSesion.SolicitudesVer) this.solicitudesButton.Enabled = true;
-            else this.solicitudesButton.Enabled = false;
+            rolLabel.Text = "Rol: " + rolSesion.Descripcion;
 
-            if (this.rolSesion.VisitasVer) this.visitasButton.Enabled = true;
-            else this.visitasButton.Enabled = false;
+            SetButtonState(this.clientesButton, this.rolSesion.ClientesVer);
+            SetButtonState(this.solicitudesButton, this.rolSesion.SolicitudesVer);
+            SetButtonState(this.visitasButton, this.rolSesion.VisitasVer);
+            SetButtonState(this.tecnicosButton, this.rolSesion.TecnicosVer);
+            SetButtonState(this.tipoSolicitudesButton, this.rolSesion.TiposSolicitudesVer);
+            SetButtonState(this.tipoMaterialesButton, this.rolSesion.TiposMaterialesVer);
+        }
 
-            if (this.rolSesion.TecnicosVer) this.tecnicosButton.Enabled = true;
-            else this.tecnicosButton.Enabled = false;
-
-            if (this.rolSesion.TiposSolicitudesVer) this.tipoSolicitudesButton.Enabled = true;
-            else this.tipoSolicitudesButton.Enabled = false;
-
-            if (this.rolSesion.TiposMaterialesVer) this.tipoMaterialesButton.Enabled = true;
-            else this.tipoMaterialesButton.Enabled = false;
+        private void SetButtonState(Button button, bool canView)
+        {
+            button.Enabled = canView;
+            button.Visible = canView;
         }
     }
 }
