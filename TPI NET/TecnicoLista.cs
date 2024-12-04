@@ -78,6 +78,7 @@ namespace WindowsForms
 
             this.tecnicosDataGridView.DataSource = null;
             this.tecnicosDataGridView.DataSource = await TecnicoApiClient.GetAllAsync();
+            this.tecnicosDataGridView.Columns["Password"].Visible = false;
 
             EjecutarRol();
 

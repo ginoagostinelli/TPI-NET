@@ -26,15 +26,13 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
-    //Falta configurar de manera correcta        
+    app.UseSwaggerUI();        
     app.UseHttpLogging();
 }
 
 app.UseCors("AllowAllOrigins");//PARA BLAZOR
 app.UseHttpsRedirection();
 
-//Actualmente estamos usando los objetos del Domain Model, deberiamos usar ViewModels o DTOs         
 
 
 app.MapGet("/clientes/{id}", (int id) =>

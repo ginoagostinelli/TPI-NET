@@ -1,4 +1,6 @@
 using Dominio.Model;
+using System.Linq;
+using System.Windows.Forms;
 using TPI_NET.APIs;
 using WindowsForms;
 
@@ -82,8 +84,17 @@ namespace TPI_NET
             clientes = await ClienteApiClient.GetAllAsync();
             this.dgvLista.DataSource = clientes;
 
-            this.dgvLista.Columns[6].Visible = false;
+            this.dgvLista.Columns["Id"].Visible = false;
+            this.dgvLista.Columns["Nombre"].Visible = false;
+            this.dgvLista.Columns["Apellido"].Visible = false;
 
+            this.dgvLista.Columns["NombreMix"].DisplayIndex = 0;
+            this.dgvLista.Columns["RazonSocial"].DisplayIndex = 1;
+            this.dgvLista.Columns["Direccion"].DisplayIndex = 2;
+            this.dgvLista.Columns["Telefono"].DisplayIndex = 3;
+
+
+            this.dgvLista.Columns["NombreMix"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             EjecutarRol();
             if (this.dgvLista.Rows.Count > 0)
             {
@@ -124,7 +135,10 @@ namespace TPI_NET
         {
             
             List<Cliente> clientesFiltrados = (from c in clientes
-                                               where c.NombreMix.Contains(this.busquedaTextBox.Text, StringComparison.OrdinalIgnoreCase)
+                                               where (c.NombreMix.Contains(this.busquedaTextBox.Text, StringComparison.OrdinalIgnoreCase)
+                                               || c.RazonSocial.Contains(this.busquedaTextBox.Text, StringComparison.OrdinalIgnoreCase)
+                                               || c.Direccion.Contains(this.busquedaTextBox.Text, StringComparison.OrdinalIgnoreCase)
+                                               || c.Telefono.Contains(this.busquedaTextBox.Text, StringComparison.OrdinalIgnoreCase))
                                                 select c).ToList();
 
             this.dgvLista.DataSource = clientesFiltrados;

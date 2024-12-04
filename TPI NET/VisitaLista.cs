@@ -150,7 +150,6 @@ namespace TPI_NET
         {
             Visita? visita;
 
-            //visita = (Visita)dgvLista.SelectedRows[0].DataBoundItem;
             visita = (from v in this.visitas
                         where v.Id == (int)dgvLista.SelectedRows[0].Cells["Id"].Value
                         select v).FirstOrDefault();

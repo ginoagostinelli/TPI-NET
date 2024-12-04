@@ -45,8 +45,7 @@ namespace WindowsForms
                 this.SetVisita();
             }
         }
-
-        //Probablemente un Enum seria mas apropiado        
+   
         public bool EditMode { get; set; } = false;
 
         public VisitaDetalle()
@@ -104,7 +103,6 @@ namespace WindowsForms
             this.descripcionTextBox.Text = this.Visita.Descripcion;
             this.volverCheckBox.Checked = this.Visita.DebeVolver;
             this.tecnicoComboBox.SelectedValue = this.Visita.Tecnico;
-            //this.direccionTextBox.Text = this.Visita.Solicitud-> ¿setear visita?
      
         }
 
@@ -117,7 +115,7 @@ namespace WindowsForms
             this.materialesGridView.DataSource = null;
             materiales = (await MaterialApiClient.GetVisitaAsync(this.Visita.Id)).ToList<Material>();
             tipos = await TipoMaterialApiClient.GetAllAsync();
-            //this.materialesGridView.DataSource = materiales;
+
             this.materialesGridView.DataSource = (from m in materiales
                                                   join t in this.tipos
                                                   on m.Tipo equals t.Id
@@ -161,7 +159,7 @@ namespace WindowsForms
             {
                 materiales.Add(visitaMaterialDetalle.Material);
             }
-            //this.GetAllAndLoad();
+            
             this.materialesGridView.DataSource = null;
             this.materialesGridView.DataSource = (from m in materiales
                                                   join t in this.tipos
@@ -179,7 +177,6 @@ namespace WindowsForms
         private void VisitaDetalle_Load(object sender, EventArgs e)
         {
             this.GetAllAndLoad();
-            //this.materialesGridView.Columns["Id"].Visible = false;
         }
 
         private async void eliminarMaterialButton_Click(object sender, EventArgs e)

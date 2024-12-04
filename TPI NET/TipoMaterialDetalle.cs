@@ -33,8 +33,7 @@ namespace WindowsForms
                 this.SetTipoMaterial();
             }
         }
-
-        //Probablemente un Enum seria mas apropiado        
+    
         public bool EditMode { get; set; } = false;
 
         public TipoMaterialDetalle()

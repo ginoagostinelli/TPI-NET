@@ -198,6 +198,7 @@
             contraTextBox.Location = new Point(24, 439);
             contraTextBox.Margin = new Padding(2, 1, 2, 1);
             contraTextBox.Name = "contraTextBox";
+            contraTextBox.PasswordChar = '*';
             contraTextBox.Size = new Size(273, 23);
             contraTextBox.TabIndex = 17;
             // 

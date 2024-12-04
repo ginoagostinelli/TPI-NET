@@ -7,7 +7,7 @@
 
         public string Apellido { get; set; }
 
-        public string NombreMix => $"{Apellido}, {Nombre} (ID: {Id})";
+        public string NombreMix => $"(ID: {Id}) {Apellido}, {Nombre}";
         public string Email { get; set; }
         public string Password { get; set; }
 

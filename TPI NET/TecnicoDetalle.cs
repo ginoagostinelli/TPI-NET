@@ -48,9 +48,6 @@ namespace WindowsForms
                 this.Tecnico.Email = this.emailTextBox.Text;
                 this.Tecnico.Password = this.contraTextBox.Text;
                 this.Tecnico.Rol = (int)this.rolComboBox.SelectedValue;
-                //El Detalle se esta llevando la responsabilidad de llamar al servicio
-                //pero tal vez deberia ser solo una vista y que esta responsabilidad quede
-                //en la Lista o tal vez en un Presenter o Controler
 
                 if (this.EditMode)
                 {
@@ -86,18 +83,6 @@ namespace WindowsForms
 
             errorProvider.SetError(nombreTextBox, string.Empty);
             errorProvider.SetError(apellidoTextBox, string.Empty);
-            /*if (this.apellidoTextBox.Text == string.Empty)
-            {
-                isValid = false;
-                errorProvider.SetError(apellidoTextBox, "El Apellido es Requerido");
-            }
-
-            if (this.nombreTextBox.Text == string.Empty)
-            {
-                isValid = false;
-                errorProvider.SetError(nombreTextBox, "El Nombre es Requerido");
-            }*/
-
 
             isValid &= controlIsValid(nombreTextBox, "El Nombre es Requerido");
             isValid &= controlIsValid(apellidoTextBox, "El Apellido es Requerido");
