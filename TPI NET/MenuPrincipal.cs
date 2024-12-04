@@ -87,7 +87,7 @@ namespace TPI_NET
 
             SetButtonState(this.clientesButton, this.rolSesion.ClientesVer);
             SetButtonState(this.solicitudesButton, this.rolSesion.SolicitudesVer);
-            SetButtonState(this.visitasButton, this.rolSesion.VisitasVer);
+            //SetButtonState(this.visitasButton, this.rolSesion.VisitasVer);
             SetButtonState(this.tecnicosButton, this.rolSesion.TecnicosVer);
             SetButtonState(this.tipoSolicitudesButton, this.rolSesion.TiposSolicitudesVer);
             SetButtonState(this.tipoMaterialesButton, this.rolSesion.TiposMaterialesVer);
@@ -97,6 +97,11 @@ namespace TPI_NET
         {
             button.Enabled = canView;
             button.Visible = canView;
+        }
+
+        private void salirButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

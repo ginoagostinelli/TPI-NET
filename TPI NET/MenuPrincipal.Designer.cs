@@ -32,10 +32,10 @@
             solicitudesButton = new Button();
             tipoSolicitudesButton = new Button();
             tecnicosButton = new Button();
-            visitasButton = new Button();
             tipoMaterialesButton = new Button();
             label1 = new Label();
             rolLabel = new Label();
+            salirButton = new Button();
             SuspendLayout();
             // 
             // clientesButton
@@ -86,22 +86,10 @@
             tecnicosButton.UseVisualStyleBackColor = true;
             tecnicosButton.Click += tecnicosButton_Click;
             // 
-            // visitasButton
-            // 
-            visitasButton.Enabled = false;
-            visitasButton.Location = new Point(667, 131);
-            visitasButton.Margin = new Padding(2, 1, 2, 1);
-            visitasButton.Name = "visitasButton";
-            visitasButton.Size = new Size(135, 43);
-            visitasButton.TabIndex = 7;
-            visitasButton.Text = "Visitas";
-            visitasButton.UseVisualStyleBackColor = true;
-            visitasButton.Click += visitasButton_Click;
-            // 
             // tipoMaterialesButton
             // 
             tipoMaterialesButton.Enabled = false;
-            tipoMaterialesButton.Location = new Point(667, 220);
+            tipoMaterialesButton.Location = new Point(664, 131);
             tipoMaterialesButton.Margin = new Padding(2, 1, 2, 1);
             tipoMaterialesButton.Name = "tipoMaterialesButton";
             tipoMaterialesButton.Size = new Size(135, 43);
@@ -132,16 +120,27 @@
             rolLabel.TabIndex = 16;
             rolLabel.Text = "Rol";
             // 
+            // salirButton
+            // 
+            salirButton.Location = new Point(664, 220);
+            salirButton.Margin = new Padding(2, 1, 2, 1);
+            salirButton.Name = "salirButton";
+            salirButton.Size = new Size(135, 43);
+            salirButton.TabIndex = 17;
+            salirButton.Text = "Salir";
+            salirButton.UseVisualStyleBackColor = true;
+            salirButton.Click += salirButton_Click;
+            // 
             // MenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(939, 356);
+            Controls.Add(salirButton);
             Controls.Add(rolLabel);
             Controls.Add(label1);
             Controls.Add(tipoMaterialesButton);
-            Controls.Add(visitasButton);
             Controls.Add(tecnicosButton);
             Controls.Add(tipoSolicitudesButton);
             Controls.Add(solicitudesButton);
@@ -160,9 +159,9 @@
         private Button solicitudesButton;
         private Button tipoSolicitudesButton;
         private Button tecnicosButton;
-        private Button visitasButton;
         private Button tipoMaterialesButton;
         private Label label1;
         private Label rolLabel;
+        private Button salirButton;
     }
 }
