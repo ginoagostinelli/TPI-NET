@@ -49,7 +49,7 @@ namespace Domain.Services
             if (clienteToUpdate != null)
             {
                 clienteToUpdate.Nombre = cliente.Nombre;
-                clienteToUpdate.Apellido = cliente.Nombre;
+                clienteToUpdate.Apellido = cliente.Apellido;
                 clienteToUpdate.RazonSocial = cliente.RazonSocial;
                 clienteToUpdate.Direccion = cliente.Direccion;
                 clienteToUpdate.Telefono = cliente.Telefono;
