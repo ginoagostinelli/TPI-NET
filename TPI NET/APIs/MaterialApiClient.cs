@@ -7,8 +7,7 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace TPI_NET.APIs
-{
-    //Revisar si no seria mejor usar metodos estaticos        
+{ 
 
     public class MaterialApiClient
     {
