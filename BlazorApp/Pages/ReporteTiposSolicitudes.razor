@@ -48,9 +48,14 @@ else
                 }
             };
 
+        int total = reporte.Sum(item => item.Total);
+
         foreach (var item in reporte)
         {
-            _configuracionPastel.Data.Labels.Add(item.Nombre);
+
+            double percentage = ((double)item.Total / total) * 100;
+            string label = $"{item.Nombre} ({item.Total}, {percentage}%)";
+            _configuracionPastel.Data.Labels.Add(label);
         }
 
         PieDataset<int> dataset = new PieDataset<int>((from i in reporte select i.Total).ToArray())
