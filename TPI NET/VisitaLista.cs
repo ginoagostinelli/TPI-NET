@@ -121,9 +121,6 @@ namespace TPI_NET
                                             }).ToList();
             }
 
-            EjecutarRol();
-            
-
             if (this.dgvLista.Rows.Count > 0)
             {
                 this.dgvLista.Rows[0].Selected = true;
@@ -135,15 +132,15 @@ namespace TPI_NET
                 this.btnModificar.Enabled = false;
             }
 
-            
-
             if (this.solicitud.Id == 0)
             {
                 this.btnAgregar.Enabled = false;
                 this.btnEliminar.Enabled = false;
                 this.btnModificar.Enabled = false;
             }
-            
+
+            EjecutarRol();
+
         }
 
         private Visita? SelectedItem()

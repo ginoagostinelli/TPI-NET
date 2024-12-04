@@ -78,9 +78,7 @@ namespace WindowsForms
             this.agregarButton.Enabled = false;
 
             this.tipoMaterialDataGridView.DataSource = null;
-            this.tipoMaterialDataGridView.DataSource = await TipoMaterialApiClient.GetAllAsync();
-
-            EjecutarRol();
+            this.tipoMaterialDataGridView.DataSource = await TipoMaterialApiClient.GetAllAsync();            
 
             if (this.tipoMaterialDataGridView.Rows.Count > 0)
             {
@@ -91,6 +89,8 @@ namespace WindowsForms
                 this.eliminarButton.Enabled = false;
                 this.modificarButton.Enabled = false;
             }
+
+            EjecutarRol();
         }
 
         private TipoMaterial SelectedItem()

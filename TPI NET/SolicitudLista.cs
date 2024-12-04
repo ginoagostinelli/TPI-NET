@@ -79,8 +79,6 @@ namespace WindowsForms
             this.solicitudesDataGridView.DataSource = null;
             this.solicitudesDataGridView.DataSource = await SolicitudApiClient.GetAllAsync();
 
-            EjecutarRol();
-
             if (this.solicitudesDataGridView.Rows.Count > 0)
             {
                 this.solicitudesDataGridView.Rows[0].Selected = true;
@@ -91,6 +89,8 @@ namespace WindowsForms
                 this.eliminarButton.Enabled = false;
                 this.modificarButton.Enabled = false;
             }
+
+            EjecutarRol();
         }
 
         private Solicitud SelectedItem()

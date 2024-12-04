@@ -80,8 +80,6 @@ namespace WindowsForms
             this.tecnicosDataGridView.DataSource = await TecnicoApiClient.GetAllAsync();
             this.tecnicosDataGridView.Columns["Password"].Visible = false;
 
-            EjecutarRol();
-
             if (this.tecnicosDataGridView.Rows.Count > 0)
             {
                 this.tecnicosDataGridView.Rows[0].Selected = true;
@@ -91,6 +89,8 @@ namespace WindowsForms
                 this.eliminarButton.Enabled = false;
                 this.modificarButton.Enabled = false;
             }
+
+            EjecutarRol();
         }
 
         private Tecnico SelectedItem()

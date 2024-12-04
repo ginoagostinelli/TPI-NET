@@ -95,7 +95,7 @@ namespace TPI_NET
 
 
             this.dgvLista.Columns["NombreMix"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            EjecutarRol();
+            
             if (this.dgvLista.Rows.Count > 0)
             {
                 this.dgvLista.Rows[0].Selected = true;
@@ -106,6 +106,8 @@ namespace TPI_NET
                 this.btnEliminar.Enabled = false;
                 this.btnModificar.Enabled = false;
             }
+
+            EjecutarRol();
         }
 
         private Cliente SelectedItem()

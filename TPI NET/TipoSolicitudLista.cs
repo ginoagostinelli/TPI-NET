@@ -77,7 +77,6 @@ namespace TPI_NET
             this.dgvLista.DataSource = null;
             this.dgvLista.DataSource = await TipoSolicitudApiClient.GetAllAsync();
 
-            EjecutarRol();
             if (this.dgvLista.Rows.Count > 0)
             {
                 this.dgvLista.Rows[0].Selected = true;
@@ -88,6 +87,8 @@ namespace TPI_NET
                 this.btnEliminar.Enabled = false;
                 this.btnModificar.Enabled = false;
             }
+
+            EjecutarRol();
         }
 
         private TipoSolicitud SelectedItem()
